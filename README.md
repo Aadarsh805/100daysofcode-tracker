@@ -1,1 +1,1 @@
-## Make sure you have node 18+ installed to run local server
+## Make sure you have Node v16.8.0 or later installed to run local server
