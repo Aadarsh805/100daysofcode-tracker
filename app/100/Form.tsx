@@ -1,5 +1,6 @@
 "use client";
 
+import path from "path";
 import { FC, MouseEvent, useState } from "react";
 
 interface FormProps {}
@@ -11,6 +12,7 @@ const Form: FC<FormProps> = ({}) => {
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(path.join(__dirname, "/static/sraper.py"));
 
     const results = await fetch("/api/scrape", {
       method: "POST",

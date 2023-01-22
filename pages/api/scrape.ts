@@ -8,7 +8,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
   const { username } = req.body;
-  const python = spawn("python3", ["static/scraper.py", username]);
+  const python = spawn("python3", ["/static/scraper.py", username]);
   let data = "";
 
   python.stdout.on("data", (chunk) => {
