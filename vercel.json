@@ -2,8 +2,7 @@
   "build": {
     "env": {
       "PYTHON_VERSION": "3.9.1"
-    },
-    "command": "pip install -r requirements.txt"
+    }
   },
   "env": {
     "PYTHON_VERSION": "3.9.1"
