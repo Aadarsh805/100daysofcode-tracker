@@ -57,7 +57,9 @@ const Form: FC<FormProps> = ({}) => {
               .reverse()
               .map((tweet: any, i: any) => (
                 <div key={i} className="bg-green-200 mt-2 flex gap-4">
-                  <p className="min-w-[10rem]">{new Date(tweet.date).toDateString()}</p>
+                  <p className="min-w-[10rem]">
+                    {new Date(tweet.date).toDateString()}
+                  </p>
                   <p>{tweet.content}</p>
                 </div>
               ))}
