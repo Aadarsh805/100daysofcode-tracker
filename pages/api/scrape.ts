@@ -3,12 +3,11 @@ import path from "path";
 import { spawn } from "child_process";
 import { NextApiRequest, NextApiResponse } from "next";
 
-// const scriptPath = path.join(__dirname, "pages/api/scraper.py");
-// const script = fs.readFileSync(scriptPath, "utf8");
-
 const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
+  const scriptPath = path.join(__dirname, "static/scraper.py");
+  const script = fs.readFileSync(scriptPath);
   const { username } = req.body;
-  const python = spawn("python3", ["static/scraper.py", username]);
+  const python = spawn("python3", [script, username]);
   let data = "";
 
   python.stdout.on("data", (chunk) => {
