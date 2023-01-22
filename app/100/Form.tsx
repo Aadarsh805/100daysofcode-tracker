@@ -12,7 +12,6 @@ const Form: FC<FormProps> = ({}) => {
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(path.join(__dirname, "/static/sraper.py"));
 
     const results = await fetch("/api/scrape", {
       method: "POST",

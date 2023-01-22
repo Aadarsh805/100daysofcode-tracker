@@ -7,7 +7,7 @@ const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
   const scriptPath = path.join(__dirname, "static/scraper.py");
   const script = fs.readFileSync(scriptPath);
   const { username } = req.body;
-  const python = spawn("python3", [script, username]);
+  const python = spawn("python3", [scriptPath, username]);
   let data = "";
 
   python.stdout.on("data", (chunk) => {
