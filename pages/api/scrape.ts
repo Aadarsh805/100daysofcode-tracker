@@ -1,10 +1,14 @@
+import fs from "fs";
+import path from "path";
 import { spawn } from "child_process";
 import { NextApiRequest, NextApiResponse } from "next";
 
+// const scriptPath = path.join(__dirname, "pages/api/scraper.py");
+// const script = fs.readFileSync(scriptPath, "utf8");
+
 const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
   const { username } = req.body;
-  const python = spawn("python3", ["pages/api/scraper.py", username]);
-
+  const python = spawn("python3", [".next/static/scraper.py", username]);
   let data = "";
 
   python.stdout.on("data", (chunk) => {
