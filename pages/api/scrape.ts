@@ -7,7 +7,7 @@ const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
 
   console.log(username);
   let data = "";
-  res.status(200).json({ message: username });
+  res.status(200).json({ username });
 
   // python.stdout.on("data", (chunk) => {
   //   data += chunk;

@@ -22,20 +22,22 @@ const Form: FC<FormProps> = ({}) => {
       },
     }).then((res) => res.json());
 
-    console.log(results.jsonData);
-    if (results) {
-      const dateArray = Object.values(results.jsonData.date);
-      const usernameArray = Object.values(results.jsonData.username);
-      const contentArray = Object.values(results.jsonData.content);
-      console.log(dateArray);
-      console.log(usernameArray);
-      console.log(contentArray);
-      const tweets = contentArray.map((content, index) => ({
-        content,
-        date: dateArray[index],
-      }));
-      setTweets(tweets);
-    }
+    setTweets(results);
+
+    // console.log(results.jsonData);
+    // if (results) {
+    //   const dateArray = Object.values(results.jsonData.date);
+    //   const usernameArray = Object.values(results.jsonData.username);
+    //   const contentArray = Object.values(results.jsonData.content);
+    //   console.log(dateArray);
+    //   console.log(usernameArray);
+    //   console.log(contentArray);
+    //   const tweets = contentArray.map((content, index) => ({
+    //     content,
+    //     date: dateArray[index],
+    //   }));
+    //   setTweets(tweets);
+    // }
   };
 
   console.log(tweets, "bro");
@@ -51,18 +53,23 @@ const Form: FC<FormProps> = ({}) => {
       <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
         <div></div>
         <div>
-          {tweets &&
-            tweets
-              .slice()
-              .reverse()
-              .map((tweet: any, i: any) => (
-                <div key={i} className="bg-green-200 mt-2 flex gap-4">
-                  <p className="min-w-[10rem]">
-                    {new Date(tweet.date).toDateString()}
-                  </p>
-                  <p>{tweet.content}</p>
-                </div>
-              ))}
+          {tweets && (
+            <div>
+              {/* {tweets
+                .slice()
+                .reverse()
+                .map((tweet: any, i: any) => (
+                  <div key={i} className="bg-green-200 mt-2 flex gap-4">
+                    <p className="min-w-[10rem]">
+                      {new Date(tweet.date).toDateString()}
+                    </p>
+                    <p>{tweet.content}</p>
+                  </div>
+                ))} */}
+              <p>{tweets.username}</p>
+              <p>yahlo</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
