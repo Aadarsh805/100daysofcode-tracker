@@ -1,9 +1,12 @@
-const page = () => {
+import Sidebar from "./Sidebar";
+
+const Page = () => {
   return (
     <div>
-      <h1>This is dashboard</h1>
+      {/* <h1 className="text-white">This is dashboard</h1> */}
+      <Sidebar />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
