@@ -23,11 +23,11 @@ const Form: FC<FormProps> = ({}) => {
       },
     }).then((res) => res.json());
 
-    console.log(results.jsonData);
     if (results) {
-      const dateArray = Object.values(results.jsonData.date);
-      const usernameArray = Object.values(results.jsonData.username);
-      const contentArray = Object.values(results.jsonData.content);
+      console.log(results);
+      const dateArray = Object.values(results.data.date);
+      const usernameArray = Object.values(results.data.username);
+      const contentArray = Object.values(results.data.content);
       console.log(dateArray);
       console.log(usernameArray);
       console.log(contentArray);

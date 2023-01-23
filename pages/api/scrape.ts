@@ -1,30 +1,17 @@
-import fs from "fs";
-import path from "path";
-import { spawn } from "child_process";
+import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
-  const scriptPath = path.join(__dirname, "static/scraper.py");
-  const script = fs.readFileSync(scriptPath);
   const { username } = req.body;
-  const python = spawn("python3", [scriptPath, username]);
-  let data = "";
-
-  python.stdout.on("data", (chunk) => {
-    data += chunk;
-  });
-
-  python.on("close", (code) => {
-    if (code === 0) {
-      const jsonData = JSON.parse(data);
-      res.status(200).json({ jsonData });
-    } else {
-      res.status(500).json({ message: "Internal server error" });
-    }
-  });
-  python.on("error", (err) => {
-    res.status(500).json({ message: "Internal server error2" });
-  });
+  try {
+    const response = await axios.get(
+      `https://filthy-stage-production.up.railway.app/${username}`
+    );
+    res.status(200).json({ data: response.data });
+  } catch (error) {
+    console.log(error, "error");
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 export default scrape;
