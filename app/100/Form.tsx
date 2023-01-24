@@ -2,12 +2,13 @@
 
 import path from "path";
 import { FC, MouseEvent, useState } from "react";
-
+import ComparisonPage from "./Comparison";
+import ContributionGraph from "../ContributionGraph";
 interface FormProps {}
 
 const Form: FC<FormProps> = ({}) => {
   const [tweets, setTweets] = useState<any>();
-  const [date, setDate] = useState<any>();
+  const [dates, setDates] = useState<any>();
   const [username, setUsername] = useState<string>("");
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -24,22 +25,19 @@ const Form: FC<FormProps> = ({}) => {
     }).then((res) => res.json());
 
     if (results) {
-      console.log(results);
       const dateArray = Object.values(results.data.date);
       const usernameArray = Object.values(results.data.username);
       const contentArray = Object.values(results.data.content);
-      console.log(dateArray);
-      console.log(usernameArray);
-      console.log(contentArray);
       const tweets = contentArray.map((content, index) => ({
         content,
         date: dateArray[index],
       }));
       setTweets(tweets);
+      setDates(dateArray);
     }
   };
 
-  console.log(tweets, "bro");
+  // console.log(dates, "bro");
   return (
     <div className="bg-red-500 flex flex-col">
       <input
@@ -49,6 +47,9 @@ const Form: FC<FormProps> = ({}) => {
       <button className="bg-black text-white" onClick={handleClick}>
         Click me
       </button>
+      <ContributionGraph
+      // dates={dates}
+      />
       <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
         <div>
           {tweets &&
@@ -58,6 +59,8 @@ const Form: FC<FormProps> = ({}) => {
               .map((tweet: any, i: any) => (
                 <div key={i} className="bg-green-200 mt-2 flex gap-4">
                   <p className="min-w-[10rem]">
+                    {i}
+                    {") " + " "}
                     {new Date(tweet.date).toDateString()}
                   </p>
                   <p>{tweet.content}</p>
@@ -65,6 +68,8 @@ const Form: FC<FormProps> = ({}) => {
               ))}
         </div>
       </div>
+
+      <ComparisonPage tweets={tweets} />
     </div>
   );
 };
