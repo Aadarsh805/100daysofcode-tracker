@@ -5,6 +5,7 @@ const page = ({}) => {
     <div>
       <Form />
       <p>page</p>
+      
     </div>
   );
 };
