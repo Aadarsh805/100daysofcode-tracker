@@ -4,8 +4,6 @@ const page = ({}) => {
   return (
     <div>
       <Form />
-      <p>page</p>
-      
     </div>
   );
 };
