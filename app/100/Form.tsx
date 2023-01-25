@@ -9,7 +9,7 @@ interface FormProps {}
 const Form: FC<FormProps> = ({}) => {
   const [tweets, setTweets] = useState<any>();
   const [dates, setDates] = useState<any>();
-  const [username, setUsername] = useState<string>("");
+  const [username, setUsername] = useState<any>("");
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ const Form: FC<FormProps> = ({}) => {
     }
   };
 
-  console.log(dates, "bro");
+  console.log(username[0], "bro");
   return (
     <div className="flex flex-col gap-6">
       <input
@@ -51,8 +51,8 @@ const Form: FC<FormProps> = ({}) => {
       >
         Click me
       </button>
-      <ContributionGraph dates={dates} />
-      <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
+      <ContributionGraph dates={dates} tweets={tweets} username={username} />
+      {/* <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
         <div>
           {tweets &&
             tweets
@@ -69,9 +69,9 @@ const Form: FC<FormProps> = ({}) => {
                 </div>
               ))}
         </div>
-      </div>
+      </div> */}
 
-      <ComparisonPage tweets={tweets} />
+      {/* <ComparisonPage tweets={tweets} /> */}
     </div>
   );
 };

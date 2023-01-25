@@ -5,7 +5,9 @@ import Value from "react-calendar-heatmap";
 import { FC, useState } from "react";
 import Tooltip from "react-tippy";
 interface ContributionGraphProps {
+  tweets: any;
   dates: string[];
+  username: string;
 }
 interface HeatmapData {
   date: string;
@@ -27,7 +29,11 @@ const createHeatmapData = (dates: string[]) => {
   return heatmapData;
 };
 
-const ContributionGraph: FC<ContributionGraphProps> = ({ dates }) => {
+const ContributionGraph: FC<ContributionGraphProps> = ({
+  tweets,
+  dates,
+  username,
+}) => {
   const heatmapData = createHeatmapData(dates);
   // const heatmapData = dates?.map((date) => {
   //   return {
@@ -71,17 +77,20 @@ const ContributionGraph: FC<ContributionGraphProps> = ({ dates }) => {
         // }}
       />
       {selectedDate ? (
-        <div
-          className="tooltip bg-red-500 p-4 rounded"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
-        >
-          <p className="mb-3">{new Date(selectedDate).toDateString()}</p>
-          <p></p>
+        <div className="tooltip p-6 rounded bg-white text-black max-w-3xl w-fit mt-2">
+          <div className="flex gap-4">
+            <span className="w-12 h-12 rounded-full bg-gray-200"></span>
+            <div className="flex flex-col">
+              <p className="">{username}</p>
+              <p className=" text-xs opacity-50">@{username}</p>
+            </div>
+          </div>
+          <p className="my-2">
+            {tweets.find((tweet: any) => tweet.date === selectedDate).content}
+          </p>
+          <p className=" text-sm text-gray-500 ">
+            {new Date(selectedDate).toDateString()}
+          </p>
         </div>
       ) : null}
     </div>

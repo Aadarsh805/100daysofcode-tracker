@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.react-calendar-heatmap {
+.active {
   fill: #1da1f2;
   cursor: pointer;
-  position: relative;
 }
 
 :root {
