@@ -2,19 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-
-.blue {
-  background-color: blue;
+.react-calendar-heatmap {
+  fill: #1da1f2;
+  cursor: pointer;
+  position: relative;
 }
 
 :root {

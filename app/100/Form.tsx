@@ -25,9 +25,9 @@ const Form: FC<FormProps> = ({}) => {
     }).then((res) => res.json());
 
     if (results) {
-      const dateArray = Object.values(results.data.date);
-      const usernameArray = Object.values(results.data.username);
-      const contentArray = Object.values(results.data.content);
+      const dateArray = Object.values(results?.data?.date);
+      const usernameArray = Object.values(results?.data?.username);
+      const contentArray = Object.values(results?.data?.content);
       const tweets = contentArray.map((content, index) => ({
         content,
         date: dateArray[index],
@@ -37,19 +37,21 @@ const Form: FC<FormProps> = ({}) => {
     }
   };
 
-  // console.log(dates, "bro");
+  console.log(dates, "bro");
   return (
-    <div className="bg-red-500 flex flex-col">
+    <div className="flex flex-col gap-6">
       <input
         value={username}
         onChange={(e): any => setUsername(e.target.value)}
+        className=" text-white p-2 "
       />
-      <button className="bg-black text-white" onClick={handleClick}>
+      <button
+        className=" text-white w-fit p-2 bg-blue-400 font-bold rounded "
+        onClick={handleClick}
+      >
         Click me
       </button>
-      <ContributionGraph
-      // dates={dates}
-      />
+      <ContributionGraph dates={dates} />
       <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
         <div>
           {tweets &&
