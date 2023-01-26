@@ -4,6 +4,7 @@ import path from "path";
 import { FC, MouseEvent, useState } from "react";
 import ComparisonPage from "./Comparison";
 import ContributionGraph from "../ContributionGraph";
+import Streak from "./Streak";
 interface FormProps {}
 
 const Form: FC<FormProps> = ({}) => {
@@ -25,19 +26,20 @@ const Form: FC<FormProps> = ({}) => {
     }).then((res) => res.json());
 
     if (results) {
-      const dateArray = Object.values(results?.data?.date);
-      const usernameArray = Object.values(results?.data?.username);
-      const contentArray = Object.values(results?.data?.content);
+      const dateArray = Object?.values(results?.data?.date);
+      const dates = dateArray.map((date: any) => date.slice(0, 10));
+      const usernameArray = Object?.values(results?.data?.username);
+      const contentArray = Object?.values(results?.data?.content);
       const tweets = contentArray.map((content, index) => ({
         content,
-        date: dateArray[index],
+        date: dates[index],
       }));
       setTweets(tweets);
-      setDates(dateArray);
+      setDates(dates);
     }
   };
 
-  console.log(username[0], "bro");
+  console.log(dates, "bro");
   return (
     <div className="flex flex-col gap-6">
       <input
@@ -52,8 +54,9 @@ const Form: FC<FormProps> = ({}) => {
         Click me
       </button>
       <ContributionGraph dates={dates} tweets={tweets} username={username} />
-      {/* <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
-        <div>
+      <Streak dates={dates} />
+      <div className="bg-yellow-500 w-full min-h-[20vh] text-black flex gap-12">
+        {/* <div>
           {tweets &&
             tweets
               .slice()
@@ -63,13 +66,13 @@ const Form: FC<FormProps> = ({}) => {
                   <p className="min-w-[10rem]">
                     {i}
                     {") " + " "}
-                    {new Date(tweet.date).toDateString()}
+                    {tweet.date}
                   </p>
                   <p>{tweet.content}</p>
                 </div>
               ))}
-        </div>
-      </div> */}
+        </div> */}
+      </div>
 
       {/* <ComparisonPage tweets={tweets} /> */}
     </div>
