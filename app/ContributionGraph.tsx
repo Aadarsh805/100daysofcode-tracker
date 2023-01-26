@@ -53,7 +53,7 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
     <div className="relative">
       <CalendarHeatmap
         startDate={new Date("2022-01-01")}
-        endDate={new Date("2022-12-31")}
+        endDate={new Date()}
         values={heatmapData}
         gutterSize={3}
         classForValue={(value: Value) => {
