@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.active {
+  fill: #1da1f2;
+  cursor: pointer;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
