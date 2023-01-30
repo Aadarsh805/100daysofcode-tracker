@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware'
 
 interface Person {
     name: string
+    image: string
 }
 
 interface StoreValues {
@@ -19,12 +20,35 @@ const useTweetStore = create<StoreValues>((set, get) => ({
     dates: [],
     tweets: [],
     username: "",
-    userProfile: { name: "Somidh" },
+    userProfile: { name: "", image: "" },
 
     // This is an example, u can remove this below function 
     userName: (name: string) => {
         set({
             username: name
+        })
+    },
+
+    setDates: (dates: []) => {
+        set({
+            dates: dates
+        })
+    },
+    setTweets: (tweets: []) => {
+        set({
+            tweets: tweets
+        })
+    },
+    setUserName: (name: string) => {
+        set({
+            username: name
+        })
+    },
+    setUserProfile: ({name, image}: Person) => {
+       
+        set({
+            // I don't know if i did this one right or not so please check if this work or not
+            userProfile: {name, image}
         })
     }
 }))
