@@ -1,18 +1,17 @@
+"use client";
+
 import Badges from "./Badges";
 import Card from "./Card";
 import Sidebar from "./Sidebar";
-import Data from "../../data";
+import ContributionGraph from "../ContributionGraph";
+import useTweetStore from "../tweetStore";
+import Streak from "../100/Streak";
 const Page = () => {
-  const dataElement = Data.map((item) => {
-    return (
-      <Card
-        key={item.id}
-        title={item.title}
-        date={item.date}
-        points={item.points}
-      />
-    );
-  });
+  const { tweets, dates, username } = useTweetStore((state) => ({
+    tweets: state.tweets,
+    dates: state.dates,
+    username: state.username,
+  }));
 
   return (
     <div className="flex w-full bg-[#232135]">
@@ -24,14 +23,14 @@ const Page = () => {
               Saturday, Jan 21
             </p>
             <h2 className="text-xl font-bold text-white font-poppins">
-              Hello, Aadarsh
+              Hello, {username}
             </h2>
 
             <div
               className=" md:flex
             "
             >
-              {dataElement}
+              <Streak dates={dates} />
             </div>
             <div className="w-34 h-[1px] bg-[#5f6577]" />
             <div className="flex justify-between items-center py-4">
@@ -52,14 +51,16 @@ const Page = () => {
             <Badges />
           </div>
         </div>
-        <div className="p-8 border-[#312E47] border-t-2 bg-[#29263d] h-1/2">
-          Graph
-          <div className="flex pt-8">
-            <div className="bg-[#312e47] py-16 px-80 mr-24 rounded-lg">
-              Graphs tree
-            </div>
-            <div className="bg-[#242236] py-16 px-40 rounded-lg">Box</div>
+        <div className="p-8 border-[#312E47] border-t-2 bg-[#29263d] h-1/2 flex flex-col gap-12">
+          <div>
+            <p className="text-lg font-bold text-white">Graph</p>
+            <ContributionGraph
+              dates={dates}
+              tweets={tweets}
+              username={username}
+            />
           </div>
+          <p className="text-lg font-bold text-white">Streak</p>
         </div>
       </div>
     </div>

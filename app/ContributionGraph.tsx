@@ -35,12 +35,6 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
   username,
 }) => {
   const heatmapData = createHeatmapData(dates);
-  // const heatmapData = dates?.map((date) => {
-  //   return {
-  //     date: new Date(date),
-  //     count: 1,
-  //   };
-  // });
   const [tooltipContent, setTooltipContent] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
 
@@ -50,7 +44,7 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="min-w-full">
       <CalendarHeatmap
         startDate={new Date("2022-01-01")}
         endDate={new Date()}
