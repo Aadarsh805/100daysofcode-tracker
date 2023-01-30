@@ -1,10 +1,22 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
+import Card from "../dashboard/Card";
 
 interface StreakProps {
   dates: string[];
 }
+
+// const dataElement = data.map((item) => {
+//   return (
+//     <Card
+//       key={item.id}
+//       title={item.title}
+//       date={item.date}
+//       points={item.points}
+//     />
+//   );
+// });
 
 const Streak: FC<StreakProps> = ({ dates }) => {
   const [longestStreak, setLongestStreak] = useState(0);
@@ -55,24 +67,32 @@ const Streak: FC<StreakProps> = ({ dates }) => {
   }, [dates]);
 
   return (
-    <div className="flex gap-12">
-      <div>
-        <p>{dates?.length} Total Days</p>
-      </div>
-      <div>
-        <p>{longestStreak} longestStreak</p>
-        <p>{new Date(streakStart).toDateString()} </p>
-        <p>{new Date(streakEnd).toDateString()} </p>
-      </div>
-      <div>
-        <p>{currentStreak} currentStreak</p>
-        {currentStreak !== 0 && (
-          <p>
-            {new Date(currentStreakStart).toDateString()} currentStreakStart
-          </p>
+    dates && (
+      <div className="flex gap-12">
+        <Card
+          title="Total Days"
+          startDate={new Date(dates[0])?.toDateString()}
+          endDate={new Date(dates[dates.length - 1])?.toDateString()}
+          points={dates?.length}
+        />
+        <Card
+          title="Longest Streak"
+          startDate={new Date(streakStart)?.toDateString()}
+          endDate={new Date(streakEnd)?.toDateString()}
+          points={longestStreak}
+        />
+        {currentStreak !== 0 ? (
+          <Card
+            title="Current Streak"
+            startDate={new Date(currentStreakStart)?.toDateString()}
+            endDate="present"
+            points={currentStreak}
+          />
+        ) : (
+          <Card title="Current Streak" points={currentStreak} />
         )}
       </div>
-    </div>
+    )
   );
 };
 

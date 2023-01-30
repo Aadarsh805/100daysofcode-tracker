@@ -2,8 +2,9 @@ import React from "react";
 
 type CardProps = {
   title: string;
-  date: string;
   points: number;
+  startDate?: string;
+  endDate?: string;
 };
 const Card = (props: CardProps) => {
   return (
@@ -18,8 +19,15 @@ const Card = (props: CardProps) => {
         </p>
       </div>
       <div className="w-34 h-[1px] my-3 bg-[#5f6577]" />
-      <p className="text-[#5f6577] text-xs font-semibold font-poppins">From</p>
-      <p className="text-sm font-bold text-white font-poppins">{props.date}</p>
+      <div className="flex items-center gap-8">
+        {" "}
+        <p className="text-sm font-bold text-white font-poppins">
+          {props.startDate}
+        </p>
+        <p className="text-sm font-bold text-white font-poppins">
+          {props.endDate}
+        </p>
+      </div>
     </div>
   );
 };

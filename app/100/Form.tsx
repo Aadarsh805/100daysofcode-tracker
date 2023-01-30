@@ -5,12 +5,22 @@ import { FC, MouseEvent, useState } from "react";
 import ComparisonPage from "./Comparison";
 import ContributionGraph from "../ContributionGraph";
 import Streak from "./Streak";
+import useTweetStore from "../tweetStore";
+import { useRouter } from "next/navigation";
 interface FormProps {}
 
 const Form: FC<FormProps> = ({}) => {
-  const [tweets, setTweets] = useState<any>();
-  const [dates, setDates] = useState<any>();
-  const [username, setUsername] = useState<any>("");
+  const router = useRouter();
+
+  const { tweets, setTweets, dates, setDates, username, setUsername } =
+    useTweetStore((state) => ({
+      tweets: state.tweets,
+      setTweets: state.setTweets,
+      dates: state.dates,
+      setDates: state.setDates,
+      username: state.username,
+      setUsername: state.setUsername,
+    }));
 
   const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,6 +47,8 @@ const Form: FC<FormProps> = ({}) => {
       setTweets(tweets);
       setDates(dates);
     }
+
+    router.push("/dashboard");
   };
 
   console.log(dates, "bro");
