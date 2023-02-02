@@ -12,10 +12,12 @@ interface StoreValues {
   tweets: { content: unknown; date: any }[];
   username: string;
   userProfile: Person;
+  loading: boolean;
   setDates: (value: string[]) => void;
   setTweets: (value: { content: unknown; date: any }[]) => void;
   setUsername: (name: string) => void;
   setUserProfile: ({ name, image }: Person) => void;
+  setLoading: (value: boolean) => void;
 }
 
 const useTweetStore = create<StoreValues>((set, get) => ({
@@ -25,6 +27,7 @@ const useTweetStore = create<StoreValues>((set, get) => ({
   tweets: [],
   username: "",
   userProfile: { name: "", image: "" },
+  loading: false,
 
   setDates: (value: string[]) => {
     set({
@@ -44,6 +47,11 @@ const useTweetStore = create<StoreValues>((set, get) => ({
   setUserProfile: ({ name, image }: Person) => {
     set({
       userProfile: { name, image },
+    });
+  },
+  setLoading: (value: boolean) => {
+    set({
+      loading: value,
     });
   },
 }));

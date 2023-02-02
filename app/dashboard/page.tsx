@@ -6,11 +6,13 @@ import Sidebar from "./Sidebar";
 import ContributionGraph from "../ContributionGraph";
 import useTweetStore from "../tweetStore";
 import Streak from "../100/Streak";
+import Loading from "../Loading";
 const Page = () => {
-  const { tweets, dates, username } = useTweetStore((state) => ({
+  const { tweets, dates, username, loading } = useTweetStore((state) => ({
     tweets: state.tweets,
     dates: state.dates,
     username: state.username,
+    loading: state.loading,
   }));
 
   return (
