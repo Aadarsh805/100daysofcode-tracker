@@ -64,8 +64,6 @@ export default function Home() {
     }
   };
 
-  
-
   return (
     <div className="h-screen bg-[#120d31] flex flex-col items-center justify-center px-5 gap-10">
       <div className="flex flex-col items-center justify-center text-center gap-3 max-w-[50em]">
@@ -76,10 +74,11 @@ export default function Home() {
           100 Days Of Code Tracker
         </h1>
         <p className="text-[14px] text-[#9b94c6]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-          reiciendis voluptatum modi ratione repudiandae asperiores, nam
-          accusamus ea amet odit. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-          sit amet.
+          With a contribution graph that showcases your coding journey, you'll
+          have 100 reasons to code every day. So, sit back, grab a cup of
+          coffee, and let us help you track your progress, celebrate your
+          achievements, and turn 100 days of coding into a fun and fulfilling
+          experience."
         </p>
       </div>
 
