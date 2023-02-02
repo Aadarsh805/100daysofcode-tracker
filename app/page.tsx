@@ -8,23 +8,36 @@ import useTweetStore from "./tweetStore";
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
+import Loading from "./Loading";
 
 export default function Home() {
   const router = useRouter();
 
-  const { tweets, setTweets, dates, setDates, username, setUsername } =
-    useTweetStore((state) => ({
-      tweets: state.tweets,
-      setTweets: state.setTweets,
-      dates: state.dates,
-      setDates: state.setDates,
-      username: state.username,
-      setUsername: state.setUsername,
-    }));
+  const {
+    tweets,
+    setTweets,
+    dates,
+    setDates,
+    username,
+    setUsername,
+    loading,
+    setLoading,
+  } = useTweetStore((state) => ({
+    tweets: state.tweets,
+    setTweets: state.setTweets,
+    dates: state.dates,
+    setDates: state.setDates,
+    username: state.username,
+    setUsername: state.setUsername,
+    loading: state.loading,
+    setLoading: state.setLoading,
+  }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     router.push("/dashboard");
+
+    setLoading(true);
 
     const results = await fetch("/api/scrape", {
       method: "POST",
@@ -47,6 +60,7 @@ export default function Home() {
       }));
       setTweets(tweets);
       setDates(dates);
+      setLoading(false);
     }
   };
 
@@ -54,16 +68,17 @@ export default function Home() {
     <div className="h-screen bg-[#120d31] flex flex-col items-center justify-center px-5 gap-10">
       <div className="flex flex-col items-center justify-center text-center gap-3 max-w-[50em]">
         <h3 className="uppercase tracking-widest text-sm ">
-          smaller text here
+          100 days of coding, 0 days of sleep
         </h3>
         <h1 className="text-4xl md:text-5xl text-[#e4e2ec] font-semibold">
           100 Days Of Code Tracker
         </h1>
         <p className="text-[14px] text-[#9b94c6]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-          reiciendis voluptatum modi ratione repudiandae asperiores, nam
-          accusamus ea amet odit. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-          sit amet.
+          With a contribution graph that showcases your coding journey, you'll
+          have 100 reasons to code every day. So, sit back, grab a cup of
+          coffee, and let us help you track your progress, celebrate your
+          achievements, and turn 100 days of coding into a fun and fulfilling
+          experience."
         </p>
       </div>
 
@@ -95,3 +110,9 @@ export default function Home() {
     </div>
   );
 }
+
+// Track your progress, celebrate your achievements.
+// Stay motivated, keep coding
+// 100 days of coding, 0 days of sleep.
+// Coding so hard, streaks are just a side effect
+// Code like a boss, track like a pro
