@@ -1,4 +1,6 @@
+import Link from "next/link";
 import React from "react";
+import Search from "../search/page";
 
 function Sidebar() {
   return (
@@ -10,9 +12,12 @@ function Sidebar() {
           <h6 className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer flex items-center flex-row">
             Progress
           </h6>
-          <h6 className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer">
+          <Link
+            href="./search"
+            className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer"
+          >
             Search
-          </h6>
+          </Link>
         </div>
       </div>
     </div>

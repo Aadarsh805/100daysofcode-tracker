@@ -1,10 +1,14 @@
-
-const page = () => {
-    return (
-        <div>
-            <h1>Here will appear Search results</h1>
-        </div>
-    )
+import SearchBar from "./SearchBar";
+import TweetData from "../../tweets";
+function Search() {
+  return (
+    <div className="bg-slate-900">
+      <SearchBar
+        placeholder="@techy_nidhi"
+        data={TweetData}
+      />
+    </div>
+  );
 }
 
-export default page
+export default Search;
