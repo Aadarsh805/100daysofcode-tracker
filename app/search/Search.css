@@ -1,4 +1,3 @@
-.data-item {
-  font-weight: bold;
-  color: rebeccapurple;
+.dataResult::-webkit-scrollbar {
+  display: none;
 }

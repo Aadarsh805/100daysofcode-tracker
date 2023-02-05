@@ -1,6 +1,7 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
+import { TextField, Button } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 import "./Search.css";
 
 type SearchBarProps = {
@@ -13,37 +14,66 @@ type SearchBarProps = {
 };
 
 function SearchBar(props: SearchBarProps) {
+  const [filterData, setFilterData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+
+  const handleFilter = (event: { target: { value: any } }) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = props.data.filter((value) => {
+      return value.content.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilterData([]);
+    } else {
+      setFilterData(newFilter);
+    }
+  };
+
+  const clearInput = () => {
+    setFilterData([]);
+    setWordEntered("");
+  };
+
   return (
-    <div className="bg-red-600">
-      <div>
-        <Box
-          component="form"
+    <div className="flex flex-col items-center justify-center  w-2/3 md:w-1/3 lg:1/5 ">
+      <div className="flex">
+        <TextField
+          variant="outlined"
+          placeholder={props.placeholder}
+          className="border-r-transparent"
           sx={{
-            "& > :not(style)": { m: 1, width: "45ch" },
+            border: "1px solid #274060",
+            // borderRadius: "5px",
+            input: { color: "white" },
+            label: { color: "gray", letterSpacing: "2px" },
           }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            placeholder={props.placeholder}
-          />
-        </Box>
+          value={wordEntered}
+          onChange={handleFilter}
+        />
+        <div className=" h-full flex items-center justify-center p-4 cursor-pointer border  border-[#274060] border-l-transparent">
+          {filterData.length === 0 ? (
+            <SearchIcon />
+          ) : (
+            <CloseIcon onClick={clearInput} />
+          )}
+        </div>
       </div>
-      <div className="tweets-result mt-2 w-32 h-24">
-        {props.data.map((value, key) => {
-          return (
-            <p
-              className="data-item font-bold"
-              key={value.id}
-            >
-              {value.content}
-            </p>
-          );
-        })}
-      </div>
+      {filterData.length !== 0 && (
+        <div className="dataResult h-28 sm:mx-20 md:mx-24 lg:mx-28 p-5 mt-2 bg-[#3d348b] border-none rounded-sm overflow-hidden overflow-y-auto">
+          {filterData.slice(0, 15).map((value) => {
+            return (
+              <p
+                className="font-light hover:bg-[#201c41]"
+                key={value.id}
+              >
+                {value.content}
+              </p>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

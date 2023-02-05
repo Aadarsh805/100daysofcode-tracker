@@ -13,7 +13,7 @@ function Sidebar() {
             Progress
           </h6>
           <Link
-            href="./search"
+            href="../search"
             className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer"
           >
             Search
