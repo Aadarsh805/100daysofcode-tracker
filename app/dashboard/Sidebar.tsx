@@ -1,12 +1,20 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Search from "../search/page";
+import React from "react";
+import useTweetStore from "../tweetStore";
+
 
 function Sidebar() {
+  const { username } = useTweetStore((state) => ({
+    username: state.username,
+  }));
+
   return (
     <div className=" h-screen w-1/6  top-0 left-0 bg-[#232135] overflow-x-hidden pt-3 border-r-2 border-[#312E47] text-[#c4c4c9]">
       <div className="py-2 px-5 text-xl block">
-        <div>Aadarsh Thakur</div>
+        <div>{username}</div>
         <div>
           <h5 className="uppercase text-[#676B67] text-sm">Menu</h5>
           <h6 className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer flex items-center flex-row">
