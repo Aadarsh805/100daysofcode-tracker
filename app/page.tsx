@@ -3,6 +3,8 @@
 import TextField from "@mui/material/TextField";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image from "next/image";
+import Page from "./dashboard/page";
+import Search from "./search/page";
 import graphImage from "public/graph-snake.svg";
 import useTweetStore from "./tweetStore";
 import { FormEvent } from "react";
@@ -40,7 +42,7 @@ export default function Home() {
     setLoading(true);
 
     const results = await fetch("/api/scrape", {
-      method: "POST",
+      method: "POST","use client";
       body: JSON.stringify({
         username,
       }),
