@@ -20,7 +20,7 @@ function SearchBar(props: SearchBarProps) {
   const handleFilter = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = props.data.filter((value) => {
+    const newFilter: any = props.data.filter((value) => {
       return value.content.toLowerCase().includes(searchWord.toLowerCase());
     });
 
