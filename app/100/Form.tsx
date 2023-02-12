@@ -3,7 +3,7 @@
 import path from "path";
 import { FC, MouseEvent, useState } from "react";
 import ComparisonPage from "./Comparison";
-import ContributionGraph from "../ContributionGraph";
+import ContributionGraph from "../dashboard/ContributionGraph";
 import Streak from "./Streak";
 import useTweetStore from "../tweetStore";
 import { useRouter } from "next/navigation";

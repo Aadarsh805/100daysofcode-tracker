@@ -42,7 +42,7 @@ export default function Home() {
     setLoading(true);
 
     const results = await fetch("/api/scrape", {
-      method: "POST","use client";
+      method: "POST",
       body: JSON.stringify({
         username,
       }),

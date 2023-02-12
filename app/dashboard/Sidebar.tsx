@@ -1,10 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
-import Search from "../search/page";
-import React from "react";
 import useTweetStore from "../tweetStore";
-
 
 function Sidebar() {
   const { username } = useTweetStore((state) => ({
@@ -21,7 +17,7 @@ function Sidebar() {
             Progress
           </h6>
           <Link
-            href="../search"
+            href="/search"
             className="text-[#bdbbc2] hover:text-[#ed3881] cursor-pointer"
           >
             Search
