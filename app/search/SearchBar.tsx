@@ -65,12 +65,12 @@ function SearchBar(props: SearchBarProps) {
           {filterData.slice(0, 15).map((value) => {
             return (
               <p> hello </p>
-              {/* <p
+              /*{ <p
                 className="font-light hover:bg-[#201c41]"
                 key={value.id}
               >
                 {value.content}
-              </p>*/} 
+              </p>}*/
             );
           })}
         </div>
