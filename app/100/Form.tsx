@@ -4,8 +4,8 @@ import path from "path";
 import { FC, MouseEvent, useState } from "react";
 import ComparisonPage from "./Comparison";
 import ContributionGraph from "../dashboard/ContributionGraph";
-import Streak from "./Streak";
-import useTweetStore from "../tweetStore";
+import Streak from "../dashboard/Streak";
+import useTweetStore from "../store/tweetStore";
 import { useRouter } from "next/navigation";
 interface FormProps {}
 

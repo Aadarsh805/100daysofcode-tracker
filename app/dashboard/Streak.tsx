@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import Card from "../dashboard/Card";
+import Card from "./Card";
 
 interface StreakProps {
   dates: string[];

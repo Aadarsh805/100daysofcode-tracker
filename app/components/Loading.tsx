@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import loading from "public/loading.webp";
+import loading from "public/assets/loading.webp";
 import Image from "next/image";
 
 interface loadingProps {}
