@@ -6,7 +6,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: { fontFamily: { poppins: ["Poppins", "sans-serif"] } },
+    extend: {
+      colors: {
+        ourBlue: "#57A4FF",
+        ourBlack: "#140A29",
+      },
+      backgroundImage: {
+        hero: "url('../public/assets/bg3.png')",
+      },
+    },
   },
   plugins: [],
 };

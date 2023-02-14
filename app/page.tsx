@@ -1,16 +1,17 @@
 "use client";
 
-import TextField from "@mui/material/TextField";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image from "next/image";
 import Page from "./dashboard/page";
 import Search from "./search/page";
-import graphImage from "public/graph-snake.svg";
-import useTweetStore from "./tweetStore";
+import graphImage from "public/assets/graph-snake2.svg";
+import useTweetStore from "./store/tweetStore";
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-import Loading from "./Loading";
+import Loading from "./components/Loading";
+import Navbar from "./components/Navbar";
+import Form from "./Form";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const router = useRouter();
@@ -67,48 +68,40 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen bg-[#120d31] flex flex-col items-center justify-center px-5 gap-10">
-      <div className="flex flex-col items-center justify-center text-center gap-3 max-w-[50em]">
-        <h3 className="uppercase tracking-widest text-sm ">
-          100 days of coding, 0 days of sleep
-        </h3>
-        <h1 className="text-4xl md:text-5xl text-[#e4e2ec] font-semibold">
-          100 Days Of Code Tracker
-        </h1>
-        <p className="text-[14px] text-[#9b94c6]">
-          With a contribution graph that showcases your coding journey, you'll
-          have 100 reasons to code every day. So, sit back, grab a cup of
-          coffee, and let us help you track your progress, celebrate your
-          achievements, and turn 100 days of coding into a fun and fulfilling
-          experience."
-        </p>
-      </div>
+    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero bg-no-repeat w-full bg-cover">
+      <Navbar />
+      <div className="flex-1 flex flex-col justify-center items-center w-full md:mt-24">
+        <div className="flex flex-col items-center w-full justify-center gap-8 ">
+          <div className="flex flex-col items-center justify-center text-center gap-3 ">
+            <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
+              <span className="text-ourBlue">100</span> days of coding,{" "}
+              <span className="text-ourBlue">0</span> days of sleep
+            </h3>
+            <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">
+              100 Days Of Code Tracker
+            </h1>
+            <p className="font-medium text-ourBlack opacity-60 max-w-[45em]">
+              With a contribution graph that showcases your coding journey,
+              you'll have 100 reasons to code every day. So, sit back, grab a
+              cup of coffee, and let us help you track your progress, celebrate
+              your achievements, and turn 100 days of coding into a fun and
+              fulfilling experience."
+            </p>
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="flex items-center justify-center gap-2 h-full">
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            onChange={(e) => setUsername(e.target.value)}
-            sx={{
-              border: "1px solid #274060",
-              borderRadius: "10px",
-              input: { color: "white" },
-              label: { color: "gray", letterSpacing: "2px" },
-            }}
+          <Form
+            handleSubmit={handleSubmit}
+            username={username}
+            setUsername={setUsername}
           />
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            className="bg-[#3d348b] h-full flex items-center justify-center rounded-lg px-4 cursor-pointer"
-          >
-            <ArrowForwardIosIcon style={{ color: "white" }} />
-          </Button>
         </div>
-      </form>
-
-      <Image src={graphImage} alt="graph_img" className="w-full md:w-[90%]" />
+        <Image
+          src={graphImage}
+          alt="graph_img"
+          className="max-w-screen-2xl w-full"
+        />
+      </div>
+      <Footer />
     </div>
   );
 }

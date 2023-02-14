@@ -4,9 +4,9 @@ import Badges from "./Badges";
 import Card from "./Card";
 import Sidebar from "./Sidebar";
 import ContributionGraph from "./ContributionGraph";
-import useTweetStore from "../tweetStore";
-import Streak from "../100/Streak";
-import Loading from "../Loading";
+import useTweetStore from "../store/tweetStore";
+import Streak from "./Streak";
+import Loading from "../components/Loading";
 const Page = () => {
   const { tweets, dates, username, loading } = useTweetStore((state) => ({
     tweets: state.tweets,

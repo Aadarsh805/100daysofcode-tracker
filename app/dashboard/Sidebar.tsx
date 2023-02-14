@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import useTweetStore from "../tweetStore";
+import useTweetStore from "../store/tweetStore";
 
 function Sidebar() {
   const { username } = useTweetStore((state) => ({
