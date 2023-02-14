@@ -7,7 +7,7 @@ type FooterProps = {};
 
 const Footer: FC<FooterProps> = () => {
   return (
-    <div className="flex items-center justify-between w-full p-4 px-10 bg-[#EFEFEF] rounded-lg">
+    <div className="flex items-center justify-between w-full p-4 px-10 bg-[#EAF3FE] rounded-lg">
       <p className="text-lg tracking-wide uppercase text-ourBlue font-semibold cursor-pointer">
         FAQ
       </p>
@@ -27,11 +27,16 @@ const Footer: FC<FooterProps> = () => {
         <Link
           href="https://github.com/Aadarsh805/100daysofcode-tracker"
           target="_blank"
+          className="w-fit hover:bg-white hover:shadow-md rounded-full group transition-all duration-300 ease-linear"
         >
-          <AiFillGithub className="text-3xl text-ourBlue" />
+          <AiFillGithub className="text-3xl text-ourBlue group-hover:p-1" />
         </Link>
-        <Link href="https://twitter.com/Aadarsh805" target="_blank">
-          <AiOutlineTwitter className="text-3xl text-ourBlue" />
+        <Link
+          href="https://twitter.com/Aadarsh805"
+          target="_blank"
+          className="w-fit hover:bg-white hover:shadow-md rounded-full group transition-all duration-300 ease-linear"
+        >
+          <AiOutlineTwitter className="text-3xl text-ourBlue group-hover:p-1" />
         </Link>
       </div>
     </div>

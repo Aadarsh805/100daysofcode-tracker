@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Page from "./dashboard/page";
-import Search from "./search/page";
-import graphImage from "public/assets/graph-snake2.svg";
+import graphImage from "public/assets/graph-snake3.svg";
 import useTweetStore from "./store/tweetStore";
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
-import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
 import Form from "./Form";
 import Footer from "./components/Footer";
@@ -68,13 +64,13 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero bg-no-repeat w-full bg-cover">
+    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover">
       <Navbar />
       <div className="flex-1 flex flex-col justify-center items-center w-full md:mt-24">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">
             <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
-              <span className="text-ourBlue">100</span> days of coding,{" "}
+              <span className="text-[#F43984]">100</span> days of coding,{" "}
               <span className="text-ourBlue">0</span> days of sleep
             </h3>
             <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">
