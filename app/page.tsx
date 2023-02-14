@@ -11,6 +11,7 @@ import { Button } from "@mui/material";
 import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
 import Form from "./Form";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const router = useRouter();
@@ -67,33 +68,36 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center px-5 gap-10 bg-[url('../public/assets/bg3.png')]  bg-no-repeat w-full bg-cover">
+    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-[url('../public/assets/bg3.png')]  bg-no-repeat w-full bg-cover">
       <Navbar />
-      <div className="flex flex-col items-center w-full justify-center gap-10 h-[calc(100vh-20px)]">
-        <div className="flex flex-col items-center justify-center text-center gap-3 max-w-[50em]">
-          <h3 className="uppercase tracking-[.2em] font-semibold text-ourBlack">
-            <span className="text-ourBlue">100</span> days of coding,{" "}
-            <span className="text-ourBlue">0</span> days of sleep
-          </h3>
-          <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">
-            100 Days Of Code Tracker
-          </h1>
-          <p className="font-medium text-ourBlack opacity-60">
-            With a contribution graph that showcases your coding journey, you'll
-            have 100 reasons to code every day. So, sit back, grab a cup of
-            coffee, and let us help you track your progress, celebrate your
-            achievements, and turn 100 days of coding into a fun and fulfilling
-            experience."
-          </p>
-        </div>
+      <div className="flex-1 flex flex-col justify-center items-center w-full mt-24">
+        <div className="flex flex-col items-center w-full justify-center gap-8 ">
+          <div className="flex flex-col items-center justify-center text-center gap-3 ">
+            <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
+              <span className="text-ourBlue">100</span> days of coding,{" "}
+              <span className="text-ourBlue">0</span> days of sleep
+            </h3>
+            <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">
+              100 Days Of Code Tracker
+            </h1>
+            <p className="font-medium text-ourBlack opacity-60 max-w-[45em]">
+              With a contribution graph that showcases your coding journey,
+              you'll have 100 reasons to code every day. So, sit back, grab a
+              cup of coffee, and let us help you track your progress, celebrate
+              your achievements, and turn 100 days of coding into a fun and
+              fulfilling experience."
+            </p>
+          </div>
 
-        <Form
-          handleSubmit={handleSubmit}
-          username={username}
-          setUsername={setUsername}
-        />
+          <Form
+            handleSubmit={handleSubmit}
+            username={username}
+            setUsername={setUsername}
+          />
+        </div>
         <Image src={graphImage} alt="graph_img" className="w-4/5" />
       </div>
+      <Footer />
     </div>
   );
 }
