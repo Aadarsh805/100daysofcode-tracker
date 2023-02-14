@@ -68,9 +68,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-[url('../public/assets/bg3.png')]  bg-no-repeat w-full bg-cover">
+    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero bg-no-repeat w-full bg-cover">
       <Navbar />
-      <div className="flex-1 flex flex-col justify-center items-center w-full mt-24">
+      <div className="flex-1 flex flex-col justify-center items-center w-full md:mt-24">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">
             <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
@@ -95,7 +95,11 @@ export default function Home() {
             setUsername={setUsername}
           />
         </div>
-        <Image src={graphImage} alt="graph_img" className="w-4/5" />
+        <Image
+          src={graphImage}
+          alt="graph_img"
+          className="max-w-screen-2xl w-full"
+        />
       </div>
       <Footer />
     </div>

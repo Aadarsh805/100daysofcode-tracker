@@ -1,18 +1,25 @@
 import type { FC } from "react";
 import loading from "public/assets/loading.webp";
 import Image from "next/image";
+import { Roboto_Mono } from "@next/font/google";
 
 interface loadingProps {}
 
+const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-roboto-mono",
+});
+
 const Loading: FC<loadingProps> = ({}) => {
   return (
-    <div className="h-screen flex items-center justify-center bg-black overflow-hidden">
-      <div className="flex flex-col items-center rounded-lg shadow-lg ">
-        <Image src={loading} alt="loading..." className=" w-full" />
-        <p className="text-white text-lg p-6">
-          Please Wait While we hack your twitter account
-        </p>
-      </div>
+    <div
+      className={`h-screen flex flex-col items-center justify-center bg-[url('../public/assets/plainbg2.png')] bg-no-repeat w-full bg-cover overflow-hidden ${roboto_mono.className}`}
+    >
+      <Image src={loading} alt="loading..." className="w-[32rem] rounded" />
+      <p className="text-ourBlack text-lg p-6">
+        Please Wait While we hack your twitter account
+      </p>
     </div>
   );
 };

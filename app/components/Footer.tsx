@@ -11,7 +11,7 @@ const Footer: FC<FooterProps> = () => {
       <p className="text-lg tracking-wide uppercase text-ourBlue font-semibold cursor-pointer">
         FAQ
       </p>
-      <p className="font-semibold text-ourBlackd tracking-widest">
+      <p className="font-semibold text-ourBlack tracking-wider">
         Open source |{" "}
         <Link
           href="https://github.com/Aadarsh805/100daysofcode-tracker/blob/main/LICENSE"
@@ -24,8 +24,15 @@ const Footer: FC<FooterProps> = () => {
       </p>
 
       <div className="flex items-center gap-4">
-        <AiFillGithub className="text-3xl text-ourBlue" />
-        <AiOutlineTwitter className="text-3xl text-ourBlue" />
+        <Link
+          href="https://github.com/Aadarsh805/100daysofcode-tracker"
+          target="_blank"
+        >
+          <AiFillGithub className="text-3xl text-ourBlue" />
+        </Link>
+        <Link href="https://twitter.com/Aadarsh805" target="_blank">
+          <AiOutlineTwitter className="text-3xl text-ourBlue" />
+        </Link>
       </div>
     </div>
   );

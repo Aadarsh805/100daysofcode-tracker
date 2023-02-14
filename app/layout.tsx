@@ -21,10 +21,10 @@ export default function RootLayout({
     loading: state.loading,
   }));
 
-  if (loading)
+  if (!loading)
     return (
       <html lang="en">
-        <Loading />;
+        <Loading  />;
       </html>
     );
 
