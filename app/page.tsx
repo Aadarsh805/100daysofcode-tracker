@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "./components/Navbar";
 import Form from "./Form";
 import Footer from "./components/Footer";
+import supabase from "@/config/supabase";
 
 export default function Home() {
   const router = useRouter();
@@ -60,6 +61,22 @@ export default function Home() {
       setTweets(tweets);
       setDates(dates);
       setLoading(false);
+    }
+
+    const { data, error } = await supabase
+      .from("users")
+      .insert([
+        {
+          username: username,
+          // name: name,
+          // profile_img: profile_img,
+        },
+      ])
+      .select();
+    if (error) {
+      alert(error.message);
+    } else {
+      console.log("something");
     }
   };
 
