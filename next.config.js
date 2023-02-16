@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["media.giphy.com"],
+    domains: ["media.giphy.com", "pbs.twimg.com"],
   },
 };
 
