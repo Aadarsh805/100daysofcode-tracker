@@ -22,6 +22,8 @@ export default function Home() {
     setUsername,
     loading,
     setLoading,
+    userProfile,
+    setUserProfile,
   } = useTweetStore((state) => ({
     tweets: state.tweets,
     setTweets: state.setTweets,
@@ -31,6 +33,8 @@ export default function Home() {
     setUsername: state.setUsername,
     loading: state.loading,
     setLoading: state.setLoading,
+    userProfile: state.userProfile,
+    setUserProfile: state.setUserProfile,
   }));
 
   const handleSubmit = async (e: FormEvent) => {
@@ -52,13 +56,17 @@ export default function Home() {
     if (results) {
       const dateArray = Object?.values(results?.data?.date);
       const dates = dateArray.map((date: any) => date.slice(0, 10));
-      const usernameArray = Object?.values(results?.data?.username);
       const contentArray = Object?.values(results?.data?.content);
       const tweets = contentArray.map((content, index) => ({
         content,
         date: dates[index],
       }));
       setTweets(tweets);
+      setUserProfile({
+        name: results?.data?.name?.[0],
+        username: results?.data?.username?.[0],
+        profile_img: results?.data?.profile_image_url?.[0],
+      });
       setDates(dates);
       setLoading(false);
     }
@@ -87,7 +95,7 @@ export default function Home() {
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">
             <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
-              <span className="text-[#F43984]">100</span> days of coding,{" "}
+              <span className="text-ourPink">100</span> days of coding,{" "}
               <span className="text-ourBlue">0</span> days of sleep
             </h3>
             <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">

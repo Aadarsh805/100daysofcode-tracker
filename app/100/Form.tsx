@@ -51,7 +51,6 @@ const Form: FC<FormProps> = ({}) => {
     router.push("/dashboard");
   };
 
-  console.log(dates, "bro");
   return (
     <div className="flex flex-col gap-6">
       <input
