@@ -9,6 +9,13 @@ import Navbar from "./components/Navbar";
 import Form from "./Form";
 import Footer from "./components/Footer";
 import supabase from "@/config/supabase";
+import { Roboto_Mono } from "@next/font/google";
+
+const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-roboto-mono",
+});
 
 export default function Home() {
   const router = useRouter();
@@ -39,6 +46,11 @@ export default function Home() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setUserProfile({
+      name: "",
+      username: "",
+      profile_img: "",
+    });
     router.push("/dashboard");
 
     setLoading(true);
@@ -69,27 +81,35 @@ export default function Home() {
       });
       setDates(dates);
       setLoading(false);
-    }
 
-    const { data, error } = await supabase
-      .from("users")
-      .insert([
-        {
-          username: username,
-          // name: name,
-          // profile_img: profile_img,
-        },
-      ])
-      .select();
-    if (error) {
-      alert(error.message);
-    } else {
-      console.log("something");
+      const { data, error } = await supabase
+        .from("users")
+        .select("username")
+        .eq("username", username);
+      if (data && data.length > 0) {
+        console.log("username already exists");
+        return;
+      } else {
+        await supabase.from("users").insert([
+          {
+            username: results?.data?.username?.[0],
+            name: results?.data?.name?.[0],
+            profile_img: results?.data?.profile_image_url?.[0],
+          },
+        ]);
+      }
+      if (error) {
+        alert(error.message);
+      } else {
+        console.log("added to supabase");
+      }
     }
   };
 
   return (
-    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover">
+    <div
+      className={`flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
+    >
       <Navbar />
       <div className="flex-1 flex flex-col justify-center items-center w-full md:mt-24">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
