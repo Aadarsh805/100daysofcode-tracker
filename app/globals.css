@@ -7,26 +7,28 @@
   cursor: pointer;
 }
 
-.icon-group::before {
-  content: "";
-  position: absolute;
-  left: -15.5rem;
-  top: -.25rem;
-  width: 20rem;
-  height: 20rem;
-  background-image: url("../public/assets/github-pink.svg");
-  background-repeat: no-repeat;
-  z-index: 10;
-}
+@media (min-width: 950px) {
+  .icon-group::before {
+    content: "";
+    position: absolute;
+    left: -15.5rem;
+    top: -0.25rem;
+    width: 20rem;
+    height: 20rem;
+    background-image: url("../public/assets/github-pink.svg");
+    background-repeat: no-repeat;
+    z-index: 10;
+  }
 
-.icon-group::after {
-  content: "";
-  position: absolute;
-  right: -17rem;
-  top: -9.75rem;
-  width: 20rem;
-  height: 20rem;
-  background-image: url("../public/assets/twitter.svg");
-  background-repeat: no-repeat;
-  z-index: 10;
+  .icon-group::after {
+    content: "";
+    position: absolute;
+    right: -17rem;
+    top: -9.75rem;
+    width: 20rem;
+    height: 20rem;
+    background-image: url("../public/assets/twitter.svg");
+    background-repeat: no-repeat;
+    z-index: 10;
+  }
 }

@@ -23,7 +23,7 @@ const Form: FC<FormProps> = ({ handleSubmit, username, setUsername }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex items-center justify-center gap-2 h-full">
+      <div className="flex items-center justify-center gap-2 h-[56px] ">
         <TextField
           id="outlined-basic"
           label="Username"
