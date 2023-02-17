@@ -84,10 +84,14 @@ export default function Home() {
 
       const { data, error } = await supabase
         .from("users")
-        .select("username")
-        .eq("username", username);
+        .select("view_count, username")
+        .eq("username", results?.data?.username?.[0]);
       if (data && data.length > 0) {
-        console.log("username already exists");
+        const { view_count, username } = data[0];
+        await supabase
+          .from("users")
+          .update({ view_count: view_count + 1 })
+          .eq("username", username);
         return;
       } else {
         await supabase.from("users").insert([
@@ -95,13 +99,15 @@ export default function Home() {
             username: results?.data?.username?.[0],
             name: results?.data?.name?.[0],
             profile_img: results?.data?.profile_image_url?.[0],
+            view_count: 1,
           },
         ]);
+        console.log("added to supabase");
       }
       if (error) {
         alert(error.message);
       } else {
-        console.log("added to supabase");
+        console.log("supabase");
       }
     }
   };
