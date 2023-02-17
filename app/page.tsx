@@ -31,6 +31,7 @@ export default function Home() {
     setLoading,
     userProfile,
     setUserProfile,
+    setCount,
   } = useTweetStore((state) => ({
     tweets: state.tweets,
     setTweets: state.setTweets,
@@ -42,6 +43,7 @@ export default function Home() {
     setLoading: state.setLoading,
     userProfile: state.userProfile,
     setUserProfile: state.setUserProfile,
+    setCount: state.setCount,
   }));
 
   const handleSubmit = async (e: FormEvent) => {
@@ -88,12 +90,14 @@ export default function Home() {
         .eq("username", results?.data?.username?.[0]);
       if (data && data.length > 0) {
         const { view_count, username } = data[0];
+        setCount(view_count + 1);
         await supabase
           .from("users")
           .update({ view_count: view_count + 1 })
           .eq("username", username);
         return;
       } else {
+        setCount(1);
         await supabase.from("users").insert([
           {
             username: results?.data?.username?.[0],

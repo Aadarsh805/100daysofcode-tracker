@@ -32,21 +32,27 @@ const normalLink =
 
 function Sidebar() {
   const pathname = usePathname();
-  const { userProfile } = useTweetStore((state) => ({
+  const { userProfile, count } = useTweetStore((state) => ({
     userProfile: state.userProfile,
+    count: state.count,
   }));
 
   return (
     <div className="h-full w-1/6">
       <div className="flex flex-col gap-10">
-        <div className="flex items-center gap-2">
-          <Image
-            alt={`${userProfile.name}'s profile image`}
-            src={userProfile.profile_img}
-            width={200}
-            height={200}
-            className="rounded-full w-12 object-cover"
-          />
+        <div className="flex items-center gap-2 ">
+          <div className="relative">
+            <Image
+              alt={`${userProfile.name}'s profile image`}
+              src={userProfile.profile_img}
+              width={200}
+              height={200}
+              className="rounded-full w-12 object-cover"
+            />
+            <span className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full bg-ourPink text-white text-xs font-medium">
+              {count}
+            </span>
+          </div>
           <div className="flex flex-col">
             <p className="text-ourDarkGray text-lg font-semibold">
               {userProfile.name}
