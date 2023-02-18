@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         ourBlue: "#57A4FF",
         ourBlack: "#140A29",
+        ourPink: "#F43984",
+        ourDarkGray: "#3A3A3A",
       },
       backgroundImage: {
         hero: "url('../public/assets/bg3.png')",

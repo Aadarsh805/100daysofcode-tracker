@@ -9,6 +9,13 @@ import Navbar from "./components/Navbar";
 import Form from "./Form";
 import Footer from "./components/Footer";
 import supabase from "@/config/supabase";
+import { Roboto_Mono } from "@next/font/google";
+
+const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-roboto-mono",
+});
 
 export default function Home() {
   const router = useRouter();
@@ -22,6 +29,9 @@ export default function Home() {
     setUsername,
     loading,
     setLoading,
+    userProfile,
+    setUserProfile,
+    setCount,
   } = useTweetStore((state) => ({
     tweets: state.tweets,
     setTweets: state.setTweets,
@@ -31,10 +41,18 @@ export default function Home() {
     setUsername: state.setUsername,
     loading: state.loading,
     setLoading: state.setLoading,
+    userProfile: state.userProfile,
+    setUserProfile: state.setUserProfile,
+    setCount: state.setCount,
   }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setUserProfile({
+      name: "",
+      username: "",
+      profile_img: "",
+    });
     router.push("/dashboard");
 
     setLoading(true);
@@ -52,48 +70,68 @@ export default function Home() {
     if (results) {
       const dateArray = Object?.values(results?.data?.date);
       const dates = dateArray.map((date: any) => date.slice(0, 10));
-      const usernameArray = Object?.values(results?.data?.username);
       const contentArray = Object?.values(results?.data?.content);
       const tweets = contentArray.map((content, index) => ({
         content,
         date: dates[index],
       }));
       setTweets(tweets);
+      setUserProfile({
+        name: results?.data?.name?.[0],
+        username: results?.data?.username?.[0],
+        profile_img: results?.data?.profile_image_url?.[0],
+      });
       setDates(dates);
       setLoading(false);
-    }
 
-    const { data, error } = await supabase
-      .from("users")
-      .insert([
-        {
-          username: username,
-          // name: name,
-          // profile_img: profile_img,
-        },
-      ])
-      .select();
-    if (error) {
-      alert(error.message);
-    } else {
-      console.log("something");
+      const { data, error } = await supabase
+        .from("users")
+        .select("view_count, username")
+        .eq("username", results?.data?.username?.[0]);
+      if (data && data.length > 0) {
+        const { view_count, username } = data[0];
+        setCount(view_count + 1);
+        await supabase
+          .from("users")
+          .update({ view_count: view_count + 1 })
+          .eq("username", username);
+        return;
+      } else {
+        setCount(1);
+        await supabase.from("users").insert([
+          {
+            username: results?.data?.username?.[0],
+            name: results?.data?.name?.[0],
+            profile_img: results?.data?.profile_image_url?.[0],
+            view_count: 1,
+          },
+        ]);
+        console.log("added to supabase");
+      }
+      if (error) {
+        alert(error.message);
+      } else {
+        console.log("supabase");
+      }
     }
   };
 
   return (
-    <div className="flex flex-col items-center px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover">
+    <div
+      className={`flex flex-col items-center px-4 sm:px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
+    >
       <Navbar />
-      <div className="flex-1 flex flex-col justify-center items-center w-full md:mt-24">
+      <div className="flex-1 flex flex-col justify-center items-center w-full mt-32">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">
-            <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-ourBlack">
-              <span className="text-[#F43984]">100</span> days of coding,{" "}
+            <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-xs md:text-base  text-ourBlack">
+              <span className="text-ourPink">100</span> days of coding,{" "}
               <span className="text-ourBlue">0</span> days of sleep
             </h3>
-            <h1 className="text-5xl md:text-5xl text-ourBlack font-semibold capitalize">
+            <h1 className="text-4xl md:text-5xl text-ourBlack font-semibold capitalize">
               100 Days Of Code Tracker
             </h1>
-            <p className="font-medium text-ourBlack opacity-60 max-w-[45em]">
+            <p className="font-medium text-sm md:text-base text-ourBlack opacity-60 max-w-[45em]">
               With a contribution graph that showcases your coding journey,
               you&apos;ll have 100 reasons to code every day. So, sit back, grab
               a cup of coffee, and let us help you track your progress,

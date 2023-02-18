@@ -18,7 +18,7 @@ const Card = (props: CardProps) => {
           {props.points}
         </p>
       </div>
-      <div className="w-34 h-[1px] my-3 bg-[#5f6577]" />
+      <div className="w-34 h-[1px] my-3 bg-ourBlack" />
       <div className="flex items-center gap-8">
         {" "}
         <p className="text-[10px] font-bold text-gray-500 font-poppins">

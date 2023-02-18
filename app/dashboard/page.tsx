@@ -7,7 +7,16 @@ import ContributionGraph from "./ContributionGraph";
 import useTweetStore from "../store/tweetStore";
 import Streak from "./Streak";
 import Loading from "../components/Loading";
-const Page = () => {
+import Navbar from "../components/Navbar";
+import { Poppins } from "@next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-Poppins",
+});
+
+const dashboardPage = () => {
   const { tweets, dates, username, loading } = useTweetStore((state) => ({
     tweets: state.tweets,
     dates: state.dates,
@@ -63,11 +72,15 @@ const Page = () => {
               username={username}
             />
           </div>
-          <p className="text-lg font-bold text-white">Streak</p>
+          <ContributionGraph
+            dates={dates}
+            tweets={tweets}
+            username={username}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default dashboardPage;
