@@ -4,6 +4,8 @@ import getValueForClick from "react-calendar-heatmap";
 import Value from "react-calendar-heatmap";
 import { FC, useState } from "react";
 import Tooltip from "react-tippy";
+import useTweetStore from "../store/tweetStore";
+import Image from "next/image";
 interface ContributionGraphProps {
   tweets: any;
   dates: string[];
@@ -43,6 +45,10 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
     setTooltipContent(value.date);
   };
 
+  const { userProfile } = useTweetStore((state) => ({
+    userProfile: state.userProfile,
+  }));
+
   return (
     <div className="min-w-full">
       <CalendarHeatmap
@@ -73,10 +79,16 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
       {selectedDate ? (
         <div className="tooltip p-6 rounded bg-white text-black max-w-3xl w-fit mt-2">
           <div className="flex gap-4">
-            <span className="w-12 h-12 rounded-full bg-gray-200"></span>
+            <Image
+              alt={`${userProfile.name}'s profile image`}
+              src={userProfile.profile_img}
+              width={200}
+              height={200}
+              className="rounded-full w-12 object-cover"
+            />
             <div className="flex flex-col">
-              <p className="">{username}</p>
-              <p className=" text-xs opacity-50">@{username}</p>
+              <p className="">{userProfile.name}</p>
+              <p className=" text-xs opacity-50">@{userProfile.username}</p>
             </div>
           </div>
           <p className="my-2">
