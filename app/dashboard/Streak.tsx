@@ -68,7 +68,7 @@ const Streak: FC<StreakProps> = ({ dates }) => {
 
   return (
     dates && (
-      <div className="flex gap-12">
+      <div className="md:flex gap-12 space-y-5 md:space-y-0">
         <Card
           title="Total Days"
           startDate={new Date(dates[0])?.toDateString()}
@@ -89,7 +89,10 @@ const Streak: FC<StreakProps> = ({ dates }) => {
             points={currentStreak}
           />
         ) : (
-          <Card title="Current Streak" points={currentStreak} />
+          <Card
+            title="Current Streak"
+            points={currentStreak}
+          />
         )}
       </div>
     )

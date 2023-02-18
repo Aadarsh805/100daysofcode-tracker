@@ -133,10 +133,10 @@ export default function Home() {
             </h1>
             <p className="font-medium text-sm md:text-base text-ourBlack opacity-60 max-w-[45em]">
               With a contribution graph that showcases your coding journey,
-              you'll have 100 reasons to code every day. So, sit back, grab a
-              cup of coffee, and let us help you track your progress, celebrate
-              your achievements, and turn 100 days of coding into a fun and
-              fulfilling experience."
+              you&apos;ll have 100 reasons to code every day. So, sit back, grab
+              a cup of coffee, and let us help you track your progress,
+              celebrate your achievements, and turn 100 days of coding into a
+              fun and fulfilling experience.&apos;
             </p>
           </div>
 
