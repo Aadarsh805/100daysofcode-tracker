@@ -6,6 +6,9 @@
   fill: #1da1f2;
   cursor: pointer;
 }
+.color-empty {
+  fill: rgba(87, 164, 255, 0.18) !important;
+}
 
 @media (min-width: 950px) {
   .icon-group::before {
@@ -19,6 +22,18 @@
     background-repeat: no-repeat;
     z-index: 10;
   }
+
+.icon-group::before {
+  content: "";
+  position: absolute;
+  left: -15.5rem;
+  top: -0.25rem;
+  width: 20rem;
+  height: 20rem;
+  background-image: url("../public/assets/github-pink.svg");
+  background-repeat: no-repeat;
+  z-index: 10;
+}
 
   .icon-group::after {
     content: "";
