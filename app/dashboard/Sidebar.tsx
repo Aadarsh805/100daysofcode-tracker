@@ -8,7 +8,7 @@ function Sidebar() {
   }));
 
   return (
-    <div className=" h-screen w-1/6  top-0 left-0 bg-[#232135] overflow-x-hidden pt-3 border-r-2 border-[#312E47] text-[#c4c4c9]">
+    <div className="hidden md:block md:h-screen md:w-1/6  top-0 left-0 bg-[#232135] overflow-x-hidden pt-3 border-r-2 border-[#312E47] text-[#c4c4c9]">
       <div className="py-2 px-5 text-xl block">
         <div>{username}</div>
         <div>
