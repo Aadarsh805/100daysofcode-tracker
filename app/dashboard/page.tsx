@@ -9,6 +9,7 @@ import Streak from "./Streak";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import { Poppins } from "@next/font/google";
+import Footer from "../components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ const dashboardPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

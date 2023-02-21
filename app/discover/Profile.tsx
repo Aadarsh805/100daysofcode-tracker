@@ -12,7 +12,7 @@ const Profile = () => {
     <div className=" w-full flex items-center justify-between mt-10 border-2 p-2 rounded-md ">
       {/* <Image src={userProfile.profile_img} alt="profile_img"  /> */}
       <div className="flex items-center gap-2">
-        <p className="border-2 border-black rounded-full w-20 h-20 text-center"></p>
+        <p className="bg-slate-400 rounded-full w-20 h-20 text-center"></p>
         <div>
           <h1>John Doe</h1>
           <p>Mars, solar system</p>

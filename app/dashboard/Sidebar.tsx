@@ -38,7 +38,7 @@ function Sidebar() {
   }));
 
   return (
-    <div className="hidden md:block md:h-screen md:w-1/6 ">
+    <div className="hidden md:block md:h-[81vh] md:w-1/6 ">
       <div className="flex flex-col gap-10">
         <div className="flex items-center gap-2 ">
           <div className="relative">
