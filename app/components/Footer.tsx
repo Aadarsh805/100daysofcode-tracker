@@ -8,7 +8,7 @@ type FooterProps = {};
 // bg-[#EAF3FE] 
 const Footer: FC<FooterProps> = () => {
   return (
-    <div className="flex items-center justify-between  w-full py-4 px-3 md:px-10 gap-4 sm:gap-4  bg-[#EAF3FE] rounded-lg">
+    <div className="flex items-center justify-between  w-full py-5 px-3 md:px-10 gap-4 sm:gap-4  bg-[#EAF3FE] rounded-lg">
       <p className="text-lg tracking-wide uppercase text-ourBlue font-semibold cursor-pointer">
         FAQ
       </p>

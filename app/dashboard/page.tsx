@@ -26,8 +26,7 @@ const dashboardPage = () => {
 
   return (
     <div className="px-8">
-      <Navbar />
-      <div className="md:flex w-full bg-white">
+      <div className="md:flex w-full bg-[white] h-full">
         <Sidebar />
         <div className="w-full md:w-5/6 p-9">
           <div className="md:flex mb-5 md:space-x-5 space-y-5 md:space-y-0">
