@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useState } from "react";
 type CardProps = {
   title: string;
   points: number;
@@ -7,7 +7,9 @@ type CardProps = {
   endDate?: string;
 };
 const Card = (props: CardProps) => {
+  const [darkMode, setDarkMode] = useState(false);
   return (
+    // <div className={darkMode ? "dark" : ""}>
     <div className="w-full p-5 md:w-1/3 rounded-md shadow-md shadow-[#bcbcbc]  bg-white">
       <div className="flex justify-between items-centre">
         <p className="text-[#5f6577] text-xs font-semibold font-poppins">
@@ -29,6 +31,7 @@ const Card = (props: CardProps) => {
         </p>
       </div>
     </div>
+    // </div>
   );
 };
 
