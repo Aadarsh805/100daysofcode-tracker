@@ -5,7 +5,7 @@ const scrape = async (req: NextApiRequest, res: NextApiResponse) => {
   const { username } = req.body;
   try {
     const response = await axios.get(
-      `https://filthy-stage-production.up.railway.app/${username}`
+      `https://web-production-134e2.up.railway.app//${username}`
     );
     res.status(200).json({ data: response.data });
   } catch (error) {
