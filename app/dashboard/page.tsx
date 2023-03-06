@@ -9,6 +9,10 @@ import Streak from "./Streak";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import { Poppins } from "@next/font/google";
+import DownloadCanvas from "../components/DownloadCanvas";
+import { download } from "@/utils/download";
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,6 +21,11 @@ const poppins = Poppins({
 });
 
 const dashboardPage = () => {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] =
+    useState<boolean>(false);
+
+  const openDownloadModal = () => setIsDownloadModalOpen(true);
+
   const { tweets, dates, username, loading } = useTweetStore((state) => ({
     tweets: state.tweets,
     dates: state.dates,
@@ -30,7 +39,9 @@ const dashboardPage = () => {
       <div className="md:flex w-full bg-white">
         <Sidebar />
         <div className="w-full md:w-5/6 p-9">
-          <div className="md:flex mb-5 md:space-x-5 space-y-5 md:space-y-0">
+          {/* top */}
+          <div className="md:flex mb-5 md:space-x-5">
+            {/* streaks */}
             <div className="w-full md:w-2/3 p-8 rounded-md shadow-md shadow-[#bcbcbc29] border-[#bcbcbc20] border-[1px] bg-white">
               <p className="text-[#5f6577] text-base font-bold">
                 Saturday, Jan 21
@@ -39,19 +50,39 @@ const dashboardPage = () => {
                 Hello, {username}
               </h2>
 
-              <div
-                className=" md:flex
-            "
-              >
+              <div className="md:flex">
                 <Streak dates={dates} />
               </div>
             </div>
 
-            <div className="w-full md:w-1/3 p-8 rounded-md shadow-md shadow-[#bcbcbc21] border-[#bcbcbc40] border-[1px] bg-white">
-              <p className="text-lg font-bold text-gray-700">Badges</p>
-              {/* <Badges /> */}
-            </div>
+            <button
+              className="border-[1px] p-4 text-lg rounded-lg h-fit"
+              onClick={openDownloadModal}
+            >
+              Share your progress
+            </button>
+
+            {/* canvas */}
+            {isDownloadModalOpen && (
+              <Dialog
+                open={isDownloadModalOpen}
+                onClose={() => setIsDownloadModalOpen(false)}
+                className="relative z-50"
+              >
+                <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
+
+                <div className="fixed inset-0 flex items-center justify-center p-4">
+                  <Dialog.Panel className="relative w-full max-w-4xl">
+                    <div className="w-full p-8 rounded-md shadow-md shadow-[#bcbcbc21] border-[#bcbcbc40] border-[1px] bg-white">
+                      <DownloadCanvas />
+                    </div>
+                  </Dialog.Panel>
+                </div>
+              </Dialog>
+            )}
           </div>
+
+          {/* bottom */}
           <div className="p-8 rounded-md shadow-md shadow-[#bcbcbc20] border-[#bcbcbc32] border-[1px] bg-white flex flex-col gap-12">
             <p className="text-lg font-bold text-gray-700">
               Contribution Graph
