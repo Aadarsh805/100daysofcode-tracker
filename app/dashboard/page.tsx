@@ -45,10 +45,6 @@ const dashboardPage = () => {
     userProfile: state.userProfile,
   }));
 
-  useEffect(() => {
-    if (!userProfile.username) redirect("/");
-  }, []);
-
   if (dataLoadError) {
     <div className="h-screen items-center justify-centert">
       <p className="text-lg bg-red-300 p-4">An error occurred!!</p>

@@ -82,6 +82,7 @@ export default function Home() {
     }).then((res) => res.json());
 
     if (results) {
+      console.log(results);
       const dateArray = Object?.values(results?.data?.date);
       const dates = dateArray.map((date: any) => date.slice(0, 10));
       const contentArray = Object?.values(results?.data?.content);
@@ -181,9 +182,3 @@ export default function Home() {
     </div>
   );
 }
-
-// Track your progress, celebrate your achievements.
-// Stay motivated, keep coding
-// 100 days of coding, 0 days of sleep.
-// Coding so hard, streaks are just a side effect
-// Code like a boss, track like a pro
