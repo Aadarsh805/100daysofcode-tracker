@@ -11,9 +11,9 @@ import Navbar from "../components/Navbar";
 import { Poppins } from "@next/font/google";
 import DownloadCanvas from "../components/DownloadCanvas";
 import { download } from "@/utils/download";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,11 +34,9 @@ const dashboardPage = () => {
     loading: state.loading,
   }));
 
-  const router = useRouter();
-
-  if (!username) {
-    router.replace("/");
-  }
+  useEffect(() => {
+    redirect("/");
+  }, []);
 
   return (
     <div className="px-8">
