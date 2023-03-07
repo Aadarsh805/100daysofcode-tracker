@@ -33,6 +33,8 @@ export default function Home() {
     userProfile,
     setUserProfile,
     setCount,
+    dataLoadError,
+    setDataLoadError,
   } = useTweetStore((state) => ({
     tweets: state.tweets,
     setTweets: state.setTweets,
@@ -45,9 +47,10 @@ export default function Home() {
     userProfile: state.userProfile,
     setUserProfile: state.setUserProfile,
     setCount: state.setCount,
+    dataLoadError: state.dataLoadError,
+    setDataLoadError: state.setDataLoadError,
   }));
   const [noUserError, setNoUserError] = useState(false);
-  const [dataLoadError, setDataLoadError] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -64,7 +67,6 @@ export default function Home() {
       username: "",
       profile_img: "",
     });
-    router.push("/dashboard");
 
     setDataLoadError(false);
     setLoading(true);
@@ -128,15 +130,9 @@ export default function Home() {
     } else {
       setDataLoadError(true);
     }
+    router.push("/dashboard");
     setLoading(false);
   };
-
-  if (dataLoadError) {
-    <div className="h-screen items-center justify-centert">
-      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
-      <Link href="/">Go Back to Home Page</Link>
-    </div>;
-  }
 
   return (
     <div

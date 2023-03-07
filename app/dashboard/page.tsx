@@ -14,6 +14,7 @@ import { download } from "@/utils/download";
 import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,16 +28,26 @@ const dashboardPage = () => {
 
   const openDownloadModal = () => setIsDownloadModalOpen(true);
 
-  const { tweets, dates, username, loading } = useTweetStore((state) => ({
-    tweets: state.tweets,
-    dates: state.dates,
-    username: state.username,
-    loading: state.loading,
-  }));
+  const { tweets, dates, username, dataLoadError, setDataLoadError } =
+    useTweetStore((state) => ({
+      tweets: state.tweets,
+      dates: state.dates,
+      username: state.username,
+      loading: state.loading,
+      dataLoadError: state.dataLoadError,
+      setDataLoadError: state.setDataLoadError,
+    }));
 
   useEffect(() => {
     if (!username) redirect("/");
   }, []);
+
+  if (dataLoadError) {
+    <div className="h-screen items-center justify-centert">
+      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
+      <Link href="/">Go Back to Home Page</Link>
+    </div>;
+  }
 
   return (
     <div className="px-8">
