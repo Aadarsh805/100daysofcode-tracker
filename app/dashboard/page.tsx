@@ -28,18 +28,25 @@ const dashboardPage = () => {
 
   const openDownloadModal = () => setIsDownloadModalOpen(true);
 
-  const { tweets, dates, username, dataLoadError, setDataLoadError } =
-    useTweetStore((state) => ({
-      tweets: state.tweets,
-      dates: state.dates,
-      username: state.username,
-      loading: state.loading,
-      dataLoadError: state.dataLoadError,
-      setDataLoadError: state.setDataLoadError,
-    }));
+  const {
+    tweets,
+    dates,
+    username,
+    dataLoadError,
+    setDataLoadError,
+    userProfile,
+  } = useTweetStore((state) => ({
+    tweets: state.tweets,
+    dates: state.dates,
+    username: state.username,
+    loading: state.loading,
+    dataLoadError: state.dataLoadError,
+    setDataLoadError: state.setDataLoadError,
+    userProfile: state.userProfile,
+  }));
 
   useEffect(() => {
-    if (!username) redirect("/");
+    if (!userProfile.username) redirect("/");
   }, []);
 
   if (dataLoadError) {
