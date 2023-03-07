@@ -35,7 +35,7 @@ const dashboardPage = () => {
   }));
 
   useEffect(() => {
-    redirect("/");
+    if (!username) redirect("/");
   }, []);
 
   return (
