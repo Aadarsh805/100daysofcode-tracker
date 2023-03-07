@@ -11,8 +11,10 @@ import Navbar from "../components/Navbar";
 import { Poppins } from "@next/font/google";
 import DownloadCanvas from "../components/DownloadCanvas";
 import { download } from "@/utils/download";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,12 +28,29 @@ const dashboardPage = () => {
 
   const openDownloadModal = () => setIsDownloadModalOpen(true);
 
-  const { tweets, dates, username, loading } = useTweetStore((state) => ({
+  const {
+    tweets,
+    dates,
+    username,
+    dataLoadError,
+    setDataLoadError,
+    userProfile,
+  } = useTweetStore((state) => ({
     tweets: state.tweets,
     dates: state.dates,
     username: state.username,
     loading: state.loading,
+    dataLoadError: state.dataLoadError,
+    setDataLoadError: state.setDataLoadError,
+    userProfile: state.userProfile,
   }));
+
+  if (dataLoadError) {
+    <div className="h-screen items-center justify-centert">
+      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
+      <Link href="/">Go Back to Home Page</Link>
+    </div>;
+  }
 
   return (
     <div className="px-8">

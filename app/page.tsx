@@ -3,13 +3,14 @@
 import Image from "next/image";
 import graphImage from "public/assets/graph-snake3.svg";
 import useTweetStore from "./store/tweetStore";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "./components/Navbar";
 import Form from "./Form";
 import Footer from "./components/Footer";
 import supabase from "@/config/supabase";
 import { Roboto_Mono } from "@next/font/google";
+import Link from "next/link";
 
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
@@ -32,6 +33,8 @@ export default function Home() {
     userProfile,
     setUserProfile,
     setCount,
+    dataLoadError,
+    setDataLoadError,
   } = useTweetStore((state) => ({
     tweets: state.tweets,
     setTweets: state.setTweets,
@@ -44,17 +47,28 @@ export default function Home() {
     userProfile: state.userProfile,
     setUserProfile: state.setUserProfile,
     setCount: state.setCount,
+    dataLoadError: state.dataLoadError,
+    setDataLoadError: state.setDataLoadError,
   }));
+  const [noUserError, setNoUserError] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (username === "") {
+      setNoUserError(true);
+      return;
+    } else {
+      setNoUserError(false);
+    }
+
     setUserProfile({
       name: "",
       username: "",
       profile_img: "",
     });
-    router.push("/dashboard");
 
+    setDataLoadError(false);
     setLoading(true);
 
     const results = await fetch("/api/scrape", {
@@ -68,6 +82,7 @@ export default function Home() {
     }).then((res) => res.json());
 
     if (results) {
+      console.log(results);
       const dateArray = Object?.values(results?.data?.date);
       const dates = dateArray.map((date: any) => date.slice(0, 10));
       const contentArray = Object?.values(results?.data?.content);
@@ -82,39 +97,49 @@ export default function Home() {
         profile_img: results?.data?.profile_image_url?.[0],
       });
       setDates(dates);
-      setLoading(false);
 
-      const { data, error } = await supabase
-        .from("users")
-        .select("view_count, username")
-        .eq("username", results?.data?.username?.[0]);
-      if (data && data.length > 0) {
-        const { view_count, username } = data[0];
-        setCount(view_count + 1);
-        await supabase
-          .from("users")
-          .update({ view_count: view_count + 1 })
-          .eq("username", username);
-        return;
-      } else {
-        setCount(1);
-        await supabase.from("users").insert([
-          {
-            username: results?.data?.username?.[0],
-            name: results?.data?.name?.[0],
-            profile_img: results?.data?.profile_image_url?.[0],
-            view_count: 1,
-          },
-        ]);
-        console.log("added to supabase");
-      }
-      if (error) {
-        alert(error.message);
-      } else {
-        console.log("supabase");
-      }
+      // const { data, error } = await supabase
+      //   .from("users")
+      //   .select("view_count, username")
+      //   .eq("username", results?.data?.username?.[0]);
+      // if (data && data.length > 0) {
+      //   const { view_count, username } = data[0];
+      //   setCount(view_count + 1);
+      //   await supabase
+      //     .from("users")
+      //     .update({ view_count: view_count + 1 })
+      //     .eq("username", username);
+      //   return;
+      // } else {
+      //   setCount(1);
+      //   await supabase.from("users").insert([
+      //     {
+      //       username: results?.data?.username?.[0],
+      //       name: results?.data?.name?.[0],
+      //       profile_img: results?.data?.profile_image_url?.[0],
+      //       view_count: 1,
+      //     },
+      //   ]);
+      //   console.log("added to supabase");
+      // }
+      // if (error) {
+      //   alert(error.message);
+      //   setDataLoadError(true);
+      // } else {
+      //   console.log("supabase");
+      // }
+      router.push("/dashboard");
+    } else {
+      setDataLoadError(true);
     }
+    setLoading(false);
   };
+
+  if (dataLoadError) {
+    <div className="h-screen items-center justify-centert">
+      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
+    </div>;
+  }
 
   return (
     <div
@@ -144,6 +169,7 @@ export default function Home() {
             handleSubmit={handleSubmit}
             username={username}
             setUsername={setUsername}
+            noUserError={noUserError}
           />
         </div>
         <Image
@@ -156,9 +182,3 @@ export default function Home() {
     </div>
   );
 }
-
-// Track your progress, celebrate your achievements.
-// Stay motivated, keep coding
-// 100 days of coding, 0 days of sleep.
-// Coding so hard, streaks are just a side effect
-// Code like a boss, track like a pro
