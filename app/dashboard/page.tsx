@@ -45,9 +45,9 @@ const dashboardPage = () => {
     userProfile: state.userProfile,
   }));
 
-  // useEffect(() => {
-  //   if (!userProfile.username) redirect("/");
-  // }, []);
+  useEffect(() => {
+    if (!userProfile.username) redirect("/");
+  }, []);
 
   if (dataLoadError) {
     <div className="h-screen items-center justify-centert">

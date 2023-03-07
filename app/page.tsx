@@ -127,12 +127,18 @@ export default function Home() {
       // } else {
       //   console.log("supabase");
       // }
+      router.push("/dashboard");
     } else {
       setDataLoadError(true);
     }
-    router.push("/dashboard");
     setLoading(false);
   };
+
+  if (dataLoadError) {
+    <div className="h-screen items-center justify-centert">
+      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
+    </div>;
+  }
 
   return (
     <div
