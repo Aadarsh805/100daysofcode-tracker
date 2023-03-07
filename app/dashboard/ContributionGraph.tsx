@@ -1,3 +1,5 @@
+"use client";
+
 import "react-calendar-heatmap/dist/styles.css";
 import CalendarHeatmap from "react-calendar-heatmap";
 import getValueForClick from "react-calendar-heatmap";
