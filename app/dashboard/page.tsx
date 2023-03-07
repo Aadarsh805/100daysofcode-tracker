@@ -37,7 +37,7 @@ const dashboardPage = () => {
   const router = useRouter();
 
   if (!username) {
-    router.push("/");
+    router.replace("/");
   }
 
   return (
