@@ -25,11 +25,10 @@ const dashboardPage = () => {
   }));
 
   return (
-    <div className="px-8">
-      <Navbar />
+    <div className="px-8 relative">
       <div className="md:flex w-full bg-white">
         <Sidebar />
-        <div className="w-full md:w-5/6 p-9">
+        <div className="w-full md:w-5/6 p-9 absolute right-0">
           <div className="md:flex mb-5 md:space-x-5 space-y-5 md:space-y-0">
             <div className="w-full md:w-2/3 p-8 rounded-md shadow-md shadow-[#bcbcbc29] border-[#bcbcbc20] border-[1px] bg-white">
               <p className="text-[#5f6577] text-base font-bold">
