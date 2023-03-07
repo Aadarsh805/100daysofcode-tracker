@@ -13,6 +13,7 @@ import DownloadCanvas from "../components/DownloadCanvas";
 import { download } from "@/utils/download";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
+import { useRouter } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,6 +33,12 @@ const dashboardPage = () => {
     username: state.username,
     loading: state.loading,
   }));
+
+  const router = useRouter();
+
+  if (!username) {
+    router.push("/");
+  }
 
   return (
     <div className="px-8">
