@@ -23,7 +23,6 @@ export default function Home() {
     <div
       className={`flex flex-col items-center px-4 sm:px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
     >
-      <Navbar />
       <div className="flex-1 flex flex-col justify-center items-center w-full mt-32">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Head from "./head";
 import Loading from "./components/Loading";
 import useTweetStore from "./store/tweetStore";
+import Navbar from "./components/Navbar";
 
 export default function RootLayout({
   children,
@@ -13,7 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head />
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        </body>
     </html>
   );
 }
