@@ -1,24 +1,38 @@
-import type { FC, FormEvent } from "react";
+import { FC, FormEvent, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { BiChevronRight } from "react-icons/bi";
 import styled from "@emotion/styled";
 import { InputAdornment } from "@mui/material";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import useTweetStore from "./store/tweetStore";
+import { useRouter } from "next/navigation";
 
-type FormProps = {
-  handleSubmit: (e: FormEvent) => Promise<void>;
-  username: string;
-  setUsername: (name: string) => void;
-  noUserError: boolean;
-};
+type FormProps = {};
 
-const Form: FC<FormProps> = ({
-  handleSubmit,
-  username,
-  setUsername,
-  noUserError,
-}) => {
+const Form: FC<FormProps> = ({}) => {
+  const [noUserError, setNoUserError] = useState(false);
+  const router = useRouter();
+
+  const { username, setUsername, dataLoadError, setDataLoadError, loading } =
+    useTweetStore((state) => ({
+      username: state.username,
+      setUsername: state.setUsername,
+      loading: state.loading,
+      dataLoadError: state.dataLoadError,
+      setDataLoadError: state.setDataLoadError,
+    }));
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (username === "") {
+      setNoUserError(true);
+    } else {
+      setNoUserError(false);
+      router.push("/dashboard");
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex justify-center gap-2 h-[56px] ">

@@ -6,6 +6,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import { usePathname } from "next/navigation";
+import { FC, useState } from "react";
+import UserProfile from "../components/UserProfile";
 
 const links = [
   {
@@ -30,38 +32,17 @@ const activeLink =
 const normalLink =
   "flex items-center gap-3 text-ourPink hover:bg-[#343434] rounded-lg cursor-pointer py-4 px-4 text-lg transition-all duration-300 ease-in-out";
 
-function Sidebar() {
+type SidebarProps = {
+  userProfile: any;
+};
+
+const Sidebar: FC<SidebarProps> = ({ userProfile }) => {
   const pathname = usePathname();
-  const { userProfile, count } = useTweetStore((state) => ({
-    userProfile: state.userProfile,
-    count: state.count,
-  }));
 
   return (
     <div className="hidden md:block md:h-screen md:w-1/6 ">
       <div className="flex flex-col gap-10">
-        <div className="flex items-center gap-2 ">
-          <div className="relative">
-            <Image
-              alt={`${userProfile.name}'s profile image`}
-              src={userProfile.profile_img}
-              width={200}
-              height={200}
-              className="rounded-full w-12 object-cover"
-            />
-            <span className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full bg-ourPink text-white text-xs font-medium">
-              {count}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <p className="text-ourDarkGray text-lg font-semibold">
-              {userProfile.name}
-            </p>
-            <p className="text-ourDarkGray opacity-90 text-sm">
-              @{userProfile.username}
-            </p>
-          </div>
-        </div>
+        <UserProfile userProfile={userProfile} />
         <div className="flex flex-col gap-2 w-full ">
           {links.map((link) => (
             <Link key={link.name} href={link.url} className="">
@@ -75,6 +56,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
