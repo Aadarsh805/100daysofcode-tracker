@@ -19,128 +19,6 @@ const roboto_mono = Roboto_Mono({
 });
 
 export default function Home() {
-  const router = useRouter();
-
-  const {
-    tweets,
-    setTweets,
-    dates,
-    setDates,
-    username,
-    setUsername,
-    loading,
-    setLoading,
-    userProfile,
-    setUserProfile,
-    setCount,
-    dataLoadError,
-    setDataLoadError,
-  } = useTweetStore((state) => ({
-    tweets: state.tweets,
-    setTweets: state.setTweets,
-    dates: state.dates,
-    setDates: state.setDates,
-    username: state.username,
-    setUsername: state.setUsername,
-    loading: state.loading,
-    setLoading: state.setLoading,
-    userProfile: state.userProfile,
-    setUserProfile: state.setUserProfile,
-    setCount: state.setCount,
-    dataLoadError: state.dataLoadError,
-    setDataLoadError: state.setDataLoadError,
-  }));
-  const [noUserError, setNoUserError] = useState(false);
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (username === "") {
-      setNoUserError(true);
-      return;
-    } else {
-      setNoUserError(false);
-    }
-
-    setUserProfile({
-      name: "",
-      username: "",
-      profile_img: "",
-    });
-
-    setDataLoadError(false);
-    setLoading(true);
-
-    const results = await fetch("/api/scrape", {
-      method: "POST",
-      body: JSON.stringify({
-        username,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
-
-    if (results) {
-      console.log(results);
-      const dateArray = Object?.values(results?.data?.date);
-      const dates = dateArray.map((date: any) => date.slice(0, 10));
-      const contentArray = Object?.values(results?.data?.content);
-      const tweets = contentArray.map((content, index) => ({
-        content,
-        date: dates[index],
-      }));
-      setTweets(tweets);
-      setUserProfile({
-        name: results?.data?.name?.[0],
-        username: results?.data?.username?.[0],
-        profile_img: results?.data?.profile_image_url?.[0],
-      });
-      setDates(dates);
-
-      // const { data, error } = await supabase
-      //   .from("users")
-      //   .select("view_count, username")
-      //   .eq("username", results?.data?.username?.[0]);
-      // if (data && data.length > 0) {
-      //   const { view_count, username } = data[0];
-      //   setCount(view_count + 1);
-      //   await supabase
-      //     .from("users")
-      //     .update({ view_count: view_count + 1 })
-      //     .eq("username", username);
-      //   return;
-      // } else {
-      //   setCount(1);
-      //   await supabase.from("users").insert([
-      //     {
-      //       username: results?.data?.username?.[0],
-      //       name: results?.data?.name?.[0],
-      //       profile_img: results?.data?.profile_image_url?.[0],
-      //       view_count: 1,
-      //     },
-      //   ]);
-      //   console.log("added to supabase");
-      // }
-      // if (error) {
-      //   alert(error.message);
-      //   setDataLoadError(true);
-      // } else {
-      //   console.log("supabase");
-      // }
-      router.push("/dashboard");
-    } else {
-      setDataLoadError(true);
-    }
-    setLoading(false);
-  };
-
-  if (dataLoadError) {
-    <div className="h-screen items-center justify-centert">
-      <p className="text-lg bg-red-300 p-4">An error occurred!!</p>
-    </div>;
-  }
-
   return (
     <div
       className={`flex flex-col items-center px-4 sm:px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
@@ -165,12 +43,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Form
-            handleSubmit={handleSubmit}
-            username={username}
-            setUsername={setUsername}
-            noUserError={noUserError}
-          />
+          <Form />
         </div>
         <Image
           src={graphImage}
