@@ -120,7 +120,6 @@ const dashboardPage = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     if (username) {
       getData();
     }
