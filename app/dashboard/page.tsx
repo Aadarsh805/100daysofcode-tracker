@@ -120,9 +120,12 @@ const dashboardPage = () => {
   };
 
   useEffect(() => {
-    if (username) {
-      getData();
-    }
+    const get = async () => {
+      if (username) {
+        await getData();
+      }
+    };
+    get();
   }, []);
 
   if (loading) return <Loading />;
