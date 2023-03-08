@@ -11,27 +11,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { loading } = useTweetStore((state) => ({
-    loading: state.loading,
-  }));
-
-  if (loading)
-    return (
-      <html lang="en">
-        <Loading />;
-      </html>
-    );
-
   return (
     <html lang="en">
       <Head />
       <body>
-        <div className="px-10">
         <Navbar />
-
-        </div>
         {children}
-      </body>
+        </body>
     </html>
   );
 }

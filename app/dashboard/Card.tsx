@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 
 type CardProps = {
   title: string;
@@ -8,9 +8,9 @@ type CardProps = {
   startDate?: string;
   endDate?: string;
 };
-const Card = (props: CardProps) => {
+const Card: FC<CardProps> = (props) => {
   return (
-    <div className="w-full p-5 md:w-1/3 rounded-md shadow-md shadow-[#bcbcbc]  bg-white">
+    <div className="w-full p-5 md:w-1/3 rounded-md border-[1px]  bg-white">
       <div className="flex justify-between items-centre">
         <p className="text-[#5f6577] text-xs font-semibold font-poppins">
           {" "}
