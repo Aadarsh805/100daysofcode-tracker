@@ -15,12 +15,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { poppins } from "@/public/assets/fonts/fonts";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  variable: "--font-Poppins",
-});
+// const poppins = Poppins({
+//   subsets: ["latin"],
+//   weight: ["100", "200", "300", "400", "500", "600", "700"],
+//   variable: "--font-Poppins",
+// });
 
 interface Person {
   name: string;
@@ -136,17 +137,17 @@ const dashboardPage = () => {
 
   return (
     <div className="px-8 relative">
-      <div className="md:flex w-full bg-white">
+      <div className="md:flex md:gap-8 w-full bg-white">
         <Sidebar userProfile={userProfile} />
-        <div className="w-full md:w-5/6 p-9 absolute right-0">
+        <div className="w-full md:w-5/6 p-9 ">
           {/* top */}
           <div className="md:flex mb-5 md:space-x-5">
             {/* streaks */}
             <div className="w-full md:w-2/3 p-8 rounded-md shadow-md shadow-[#bcbcbc29] border-[#bcbcbc20] border-[1px] bg-white">
-              <p className="text-[#5f6577] text-base font-bold">
+              <p className={`text-[#5f6577] text-base font-bold ${poppins.className}`}>
                 Saturday, Jan 21
               </p>
-              <h2 className="text-xl font-bold text-gray-700 font-poppins pt-2 pb-5">
+              <h2 className={`text-xl font-bold text-gray-700 font-poppins pt-2 pb-5 ${poppins.className}`}>
                 Hello, {username}
               </h2>
 
@@ -156,7 +157,7 @@ const dashboardPage = () => {
             </div>
 
             <button
-              className="border-[1px] p-4 text-lg rounded-lg h-fit"
+              className={`border-[1px] p-4 text-lg rounded-lg h-fit ${poppins.className}`}
               onClick={openDownloadModal}
             >
               Share your progress
@@ -189,7 +190,7 @@ const dashboardPage = () => {
 
           {/* bottom */}
           <div className="p-8 rounded-md shadow-md shadow-[#bcbcbc20] border-[#bcbcbc32] border-[1px] bg-white flex flex-col gap-12">
-            <p className="text-lg font-bold text-gray-700">
+            <p className={`text-lg font-bold text-gray-700 ${poppins.className}`}>
               Contribution Graph
             </p>
             <div>

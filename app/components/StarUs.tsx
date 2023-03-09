@@ -3,6 +3,7 @@ import type { FC } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import mdiGithub from "public/assets/mdi_github.png";
 import Image from "next/image";
+import { poppins } from "@/public/assets/fonts/fonts";
 
 type StarUsProps = {};
 
@@ -17,7 +18,11 @@ const StarUs: FC<StarUsProps> = () => {
         <AiFillGithub className="text-2xl text-ourBlack p-[3px]" />
       </div>
       <span className="w-[1px] h-4 bg-ourBlack opacity-70"></span>
-      <p className="font-semibold text-ourBlack text-xs md:text-base">Star Us</p>
+      <p
+        className={`font-semibold text-ourBlack text-xs md:text-base ${poppins.className}`}
+      >
+        Star Us
+      </p>
     </Link>
   );
 };

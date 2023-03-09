@@ -8,6 +8,7 @@ import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import { usePathname } from "next/navigation";
 import { FC, useState } from "react";
 import UserProfile from "../components/UserProfile";
+import { poppins } from "@/public/assets/fonts/fonts";
 
 const links = [
   {
@@ -41,7 +42,7 @@ const Sidebar: FC<SidebarProps> = ({ userProfile }) => {
 
   return (
     <div
-    className="hidden md:block md:w-[20em] h-[calc(100vh-108px)] fixed left-0 pl-9 "
+    className="hidden md:block w-[15em] md:w-[20em] h-[calc(100vh-108px)] pl-10 "
   >
       <div className="flex flex-col gap-10">
         <UserProfile userProfile={userProfile} />
@@ -50,7 +51,7 @@ const Sidebar: FC<SidebarProps> = ({ userProfile }) => {
             <Link key={link.name} href={link.url} className="">
               <div className={pathname === link.url ? activeLink : normalLink}>
                 {link.icon}
-                <p className="text-xl font-medium">{link.name}</p>
+                <p className={`text-xl font-medium ${poppins.className}`}>{link.name}</p>
               </div>
             </Link>
           ))}
