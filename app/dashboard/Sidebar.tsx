@@ -40,7 +40,9 @@ const Sidebar: FC<SidebarProps> = ({ userProfile }) => {
   const pathname = usePathname();
 
   return (
-    <div className="hidden md:block md:h-screen md:w-1/6 ">
+    <div
+    className="hidden md:block md:w-[20em] h-[calc(100vh-108px)] fixed left-0 pl-9 "
+  >
       <div className="flex flex-col gap-10">
         <UserProfile userProfile={userProfile} />
         <div className="flex flex-col gap-2 w-full ">

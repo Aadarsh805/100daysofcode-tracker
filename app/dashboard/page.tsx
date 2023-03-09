@@ -135,11 +135,10 @@ const dashboardPage = () => {
   }
 
   return (
-    <div className="px-8">
-      <Navbar />
+    <div className="px-8 relative">
       <div className="md:flex w-full bg-white">
         <Sidebar userProfile={userProfile} />
-        <div className="w-full md:w-5/6 p-9">
+        <div className="w-full md:w-5/6 p-9 absolute right-0">
           {/* top */}
           <div className="md:flex mb-5 md:space-x-5">
             {/* streaks */}
