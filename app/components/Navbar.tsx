@@ -6,7 +6,7 @@ type NavbarProps = {};
 
 const Navbar: FC<NavbarProps> = () => {
   return (
-    <nav className="flex w-full justify-between bg-transparent items-center py-8 text-black gap-20 md:gap-0">
+    <nav className="flex px-10 w-full justify-between bg-transparent items-center py-8 text-black gap-20 md:gap-0">
       <Logo />
       <StarUs />
     </nav>

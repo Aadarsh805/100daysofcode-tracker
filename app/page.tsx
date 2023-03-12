@@ -22,6 +22,7 @@ export default function Home() {
   return (
     <div
       className={`flex flex-col items-center px-4 sm:px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
+      style={{ height: "calc(100vh - 108px)" }}
     >
       <div className="flex-1 flex flex-col justify-center items-center w-full mt-32">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">

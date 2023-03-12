@@ -8,6 +8,7 @@ import Streak from "../dashboard/Streak";
 import ContributionGraph from "../dashboard/ContributionGraph";
 import Logo from "./Logo";
 import UserProfile from "./UserProfile";
+import { poppins } from "@/public/assets/fonts/fonts";
 
 type DownloadCanvasProps = {
   dates: any;
@@ -67,11 +68,11 @@ const DownloadCanvas: FC<DownloadCanvasProps> = ({
             </div>
           </div>
           <div>
-            <p className="text-lg font-bold text-gray-700 mb-4">Streaks</p>
+            <p className={`text-lg font-bold text-gray-700 mb-4 ${poppins.className}`}>Streaks</p>
             <Streak dates={dates} />
           </div>
           <div>
-            <p className="text-lg font-bold text-gray-700 mb-4">
+            <p className= {`text-lg font-bold text-gray-700 mb-4 ${poppins.className}`}>
               Contribution Graph
             </p>
             <ContributionGraph
@@ -89,7 +90,7 @@ const DownloadCanvas: FC<DownloadCanvasProps> = ({
         height={height}
       />
       <button
-        className="bg-red-400 p-4 mt-10 text-lg rounded-lg"
+        className={`bg-red-400 p-4 mt-10 text-lg rounded-lg ${poppins.className} `}
         onClick={onDownload}
       >
         download

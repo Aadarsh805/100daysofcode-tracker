@@ -8,6 +8,7 @@ import { FC, useState } from "react";
 import Tooltip from "react-tippy";
 import useTweetStore from "../store/tweetStore";
 import Image from "next/image";
+import { poppins } from "@/public/assets/fonts/fonts";
 interface ContributionGraphProps {
   tweets: any;
   dates: string[];
@@ -89,14 +90,16 @@ const ContributionGraph: FC<ContributionGraphProps> = ({
               className="rounded-full w-12 object-cover"
             />
             <div className="flex flex-col">
-              <p className="">{userProfile.name}</p>
-              <p className=" text-xs opacity-50">@{userProfile.username}</p>
+              <p className={`${poppins.className}`}>{userProfile.name}</p>
+              <p className={` text-xs opacity-50 ${poppins.className}`}>
+                @{userProfile.username}
+              </p>
             </div>
           </div>
-          <p className="my-2">
+          <p className={`my-2 ${poppins.className}`}>
             {tweets.find((tweet: any) => tweet.date === selectedDate).content}
           </p>
-          <p className=" text-sm text-gray-500 ">
+          <p className={` text-sm text-gray-500 ${poppins.className}`}>
             {new Date(selectedDate).toDateString()}
           </p>
         </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { FC, useState } from "react";
 import fallbackImage from "public/assets/fallback.jpg";
+import { poppins } from "@/public/assets/fonts/fonts";
 
 type UserProfileProps = {
   userProfile: any;
@@ -19,15 +22,19 @@ const UserProfile: FC<UserProfileProps> = ({ userProfile }) => {
           height={200}
           className="rounded-full w-12 aspect-square object-cover"
         />
-        <span className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full bg-ourPink text-white text-xs font-medium">
+        <span
+          className={`absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center rounded-full bg-ourPink text-white text-xs font-medium ${poppins.className}`}
+        >
           {count}
         </span>
       </div>
       <div className="flex flex-col">
-        <p className="text-ourDarkGray text-lg font-semibold">
+        <p
+          className={`text-ourDarkGray text-lg font-semibold ${poppins.className}`}
+        >
           {userProfile?.name}
         </p>
-        <p className="text-ourDarkGray opacity-90 text-sm">
+        <p className={`text-ourDarkGray opacity-90 text-sm ${poppins.className}`}>
           @{userProfile?.username}
         </p>
       </div>
