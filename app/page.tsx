@@ -21,9 +21,10 @@ const roboto_mono = Roboto_Mono({
 export default function Home() {
   return (
     <div
-      className={`flex flex-col items-center px-4 sm:px-16 pb-8 h-screen gap-2 bg-hero2 bg-no-repeat w-full bg-cover ${roboto_mono.className}`}
+      className={`flex flex-col items-center px-4 sm:px-16 gap-2 bg-hero2 bg-no-repeat w-full  bg-cover ${roboto_mono.className}`}
     >
-      <div className="flex-1 flex flex-col justify-center items-center w-full mt-32">
+      <Navbar />
+      <div className="flex-1 flex flex-col h-[calc(100vh-108px)] justify-center items-center w-full mt-32">
         <div className="flex flex-col items-center w-full justify-center gap-8 ">
           <div className="flex flex-col items-center justify-center text-center gap-3 ">
             <h3 className="icon-group relative uppercase tracking-[.2em] font-semibold text-xs md:text-base  text-ourBlack">
@@ -49,8 +50,8 @@ export default function Home() {
           alt="graph_img"
           className="max-w-screen-2xl w-full"
         />
-      </div>
       <Footer />
+      </div>
     </div>
   );
 }
