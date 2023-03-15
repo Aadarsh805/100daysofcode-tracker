@@ -4,7 +4,6 @@ import "./globals.css";
 import Head from "./head";
 import Loading from "./components/Loading";
 import useTweetStore from "./store/tweetStore";
-import Navbar from "./components/Navbar";
 import { ContextProvider } from "./context/MyContext";
 
 export default function RootLayout({
@@ -17,7 +16,6 @@ export default function RootLayout({
       <Head />
       <body>
         <ContextProvider>
-          <Navbar />
           {children}
         </ContextProvider>
       </body>

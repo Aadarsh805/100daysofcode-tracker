@@ -137,6 +137,7 @@ const dashboardPage = () => {
 
   return (
     <div className="px-8 relative">
+      <Navbar />
       <div className="md:flex md:gap-8 w-full bg-white">
         <Sidebar userProfile={userProfile} />
         <div className="w-full md:w-5/6 p-9 ">
